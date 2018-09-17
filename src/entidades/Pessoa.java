@@ -1,9 +1,13 @@
 package entidades;
 
+
+import javax.persistence.ManyToOne;
+
 public class Pessoa {
     private String nome;
     private String email;
     private String telefone;
+    @ManyToOne
     private Cidade cidade;
 
     public String getNome() {

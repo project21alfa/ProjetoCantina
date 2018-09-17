@@ -1,17 +1,14 @@
 package entidades;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 public class PessoaFisica extends Pessoa{
-    private long id;
     private String cpf;
     private String rg;
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
     
     public String getCpf() {
         return cpf;
