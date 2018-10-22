@@ -5,11 +5,30 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 @Entity
-public class Cliente extends PessoaFisica {
+public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String endereco;
+    private String cpf;
+    private String rg;
+
+    
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getRg() {
+        return rg;
+    }
+
+    public void setRg(String rg) {
+        this.rg = rg;
+    }
 
     public long getId() {
         return id;

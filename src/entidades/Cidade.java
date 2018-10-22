@@ -18,25 +18,7 @@ public class Cidade {
 	private String nome;
 	@ManyToOne
 	private Estado estado;
-	@OneToMany
-	private List<Pessoa> pessoa= new ArrayList<Pessoa>();
 	
-	public List<Pessoa> getListaCidade(){
-		return pessoa;
-	}
-	
-	public void addPessoa(Pessoa c){
-		pessoa.add(c);
-		//{Pessoa1, Pessoa2, Pessoa3}
-	}
-	
-	public void removePessoa(int index){
-		pessoa.remove(index);
-	}
-	
-	public Pessoa getPessoa(int index){
-		return pessoa.get(index);
-	}
 
 	public long getId() {
 		return id;
