@@ -9,7 +9,7 @@ import javax.persistence.Query;
 import fabrica.Fabrica;
 import entidades.Cidade;
 
-public class GenericoDAO<T> {
+public class DAOGenerico<T> {
 	private EntityManager em;
 	
 	public T salvar(T entidade ){

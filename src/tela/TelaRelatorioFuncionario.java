@@ -8,8 +8,8 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 
-public class RelFuncionario extends JDialog{
-    public RelFuncionario(){
+public class TelaRelatorioFuncionario extends JDialog{
+    /*public RelFuncionario(){
       super(new JFrame(), "Relatório Teste", true);
         setSize(1024, 768);
 		try {
@@ -39,7 +39,7 @@ public class RelFuncionario extends JDialog{
         
         
         
-    }
+    }*/
     
     
     
