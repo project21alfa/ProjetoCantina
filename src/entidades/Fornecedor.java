@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Fornecedor {	
@@ -14,6 +15,7 @@ public class Fornecedor {
     private String nome;
     private String email;
     private String telefone;
+    @ManyToOne
     private Cidade cidade;
     
             
