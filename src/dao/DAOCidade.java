@@ -15,7 +15,7 @@ public class DAOCidade {
         em = Fabrica.getFabrica().createEntityManager();
         
         try{
-            listCidade = em.createQuery("from cidade where id_estado = " + est.getId()).getResultList();
+            listCidade = em.createQuery("from cidade where id_estado = " + est.getId() + "order by nome").getResultList();
         }
         catch(Exception e){
             e.printStackTrace();
