@@ -8,6 +8,7 @@ import entidades.Fornecedor;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
@@ -16,7 +17,8 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
 
     private List<Fornecedor> listFornecedor = new ArrayList<>();
     private Cidade cidade = new Cidade();
-     
+    private Estado estado = new Estado();
+    
     public TelaCadastroFornecedor() {
         initComponents();
         updateTable();
@@ -27,6 +29,9 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        popupMenu = new javax.swing.JPopupMenu();
+        editar = new javax.swing.JMenuItem();
+        deletar = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -44,8 +49,19 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
         btnAdicionar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         ftxtTelefone = new javax.swing.JFormattedTextField();
-        jButton4 = new javax.swing.JButton();
+        btnCadastrarTodos = new javax.swing.JButton();
         ftxtCnpj = new javax.swing.JFormattedTextField();
+
+        editar.setText("Editar");
+        popupMenu.add(editar);
+
+        deletar.setText("Deletar");
+        deletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletarActionPerformed(evt);
+            }
+        });
+        popupMenu.add(deletar);
 
         setClosable(true);
         setTitle("Cadastro Fornecedor");
@@ -73,11 +89,21 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tabelaMouseReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabela);
 
         cbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione o Estado" }));
 
         btnPesquisar.setText("Pesquisar");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -97,10 +123,10 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Telefone");
 
-        jButton4.setText("Cadastrar Todos");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnCadastrarTodos.setText("Cadastrar Todos");
+        btnCadastrarTodos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnCadastrarTodosActionPerformed(evt);
             }
         });
 
@@ -143,7 +169,7 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
+                    .addComponent(btnCadastrarTodos))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -184,7 +210,7 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(jButton4)
+                .addComponent(btnCadastrarTodos)
                 .addGap(26, 26, 26))
         );
 
@@ -203,8 +229,8 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
                         
             fornecedor.setNome(txtNome.getText().trim().toUpperCase());
             fornecedor.setEmail(txtEmail.getText().trim().toUpperCase());
-            fornecedor.setCnpj(ftxtCnpj.getText().trim().toUpperCase());
-            fornecedor.setTelefone(ftxtTelefone.getText().trim().toUpperCase());
+            fornecedor.setCnpj(getCnpj());
+            fornecedor.setTelefone(getTelefone());
             fornecedor.setCidade(cidade);
             
             listFornecedor.add(fornecedor);
@@ -217,7 +243,7 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
         limparCampos();
     }//GEN-LAST:event_btnLimparActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnCadastrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarTodosActionPerformed
         DAOGenerico daoG = new DAOGenerico();
         
         for(Fornecedor f : listFornecedor){
@@ -230,17 +256,42 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
         updateTable();
         limparCampos();
         
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnCadastrarTodosActionPerformed
+
+    private void deletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletarActionPerformed
+        int confirm = JOptionPane.showConfirmDialog(null, "Realmente deseja excluir?", "Atenção", 
+                JOptionPane.YES_NO_OPTION);
+        
+        if(confirm == JOptionPane.YES_OPTION) listFornecedor.remove(tabela.getSelectedRow());
+        
+        updateTable();
+                
+    }//GEN-LAST:event_deletarActionPerformed
+
+    private void tabelaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseReleased
+        if(evt.getButton() == evt.BUTTON3 && tabela.getSelectedRow() != -1){
+            
+            popupMenu.show(tabela, evt.getX(), evt.getY());
+            
+        }
+    }//GEN-LAST:event_tabelaMouseReleased
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        TelaEscolhaCidade telaEC = new TelaEscolhaCidade(null, true, estado);
+        cidade = telaEC.getCidade();
+    }//GEN-LAST:event_btnPesquisarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionar;
+    private javax.swing.JButton btnCadastrarTodos;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JComboBox<String> cbEstado;
+    private javax.swing.JMenuItem deletar;
+    private javax.swing.JMenuItem editar;
     private javax.swing.JFormattedTextField ftxtCnpj;
     private javax.swing.JFormattedTextField ftxtTelefone;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -249,12 +300,14 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JPopupMenu popupMenu;
     private javax.swing.JTable tabela;
     private javax.swing.JTextField txtCidade;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
-  private void updateTable(){
+  
+    private void updateTable(){
         DefaultTableModel modelo = new DefaultTableModel(){
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -280,9 +333,9 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
             
             });
             
-        }
+        }       
         
-        tabela.setModel(modelo);
+        tabela.setModel(modelo);      
       
     }
   
@@ -318,6 +371,16 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
         
         return telefone;
         
-    }    
+    }
+
+    private String getCnpj(){
+        
+        String cnpj = ftxtCnpj.getText().replace(".", "");
+        cnpj = cnpj.replace("/", "");
+        cnpj = cnpj.replace("-", "");
+        
+        return cnpj;
+        
+    }
     
 }

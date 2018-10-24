@@ -28,6 +28,7 @@ public class DAOGenerico<T> {
 		
 		return entidade;
 	}
+        
 	public T consultar(Class c, String nome){
 		em = Fabrica.getFabrica().createEntityManager();
 		try{
@@ -39,7 +40,8 @@ public class DAOGenerico<T> {
 			em.close();
 		}
 	}
-	  public T findByNome(String nome) {
+        
+	  public T findPessoaByNome(String nome) {
 		  em = Fabrica.getFabrica().createEntityManager();
 	        Query query = em.createQuery("from Pessoa as pessoa where pessoa.nome = :param");
 	        query.setParameter("param", nome);
@@ -57,7 +59,8 @@ public class DAOGenerico<T> {
 				em.close();
 			}
 			
-		}
+	}
+          
 	public List<T> listar(Class c){
 		em = Fabrica.getFabrica().createEntityManager();
 		try{
@@ -70,6 +73,7 @@ public class DAOGenerico<T> {
 		}
 		
 	}
+        
 	public boolean excluir(Class c, long id) {
 		em = Fabrica.getFabrica().createEntityManager();
 		EntityTransaction t = em.getTransaction();
@@ -88,6 +92,7 @@ public class DAOGenerico<T> {
 			em.close();
 		}
 	}
+        
 	public boolean alterar(T entidade, Class c, long id){
 	      em = Fabrica.getFabrica().createEntityManager();
 	      EntityTransaction t = em.getTransaction();
@@ -105,6 +110,6 @@ public class DAOGenerico<T> {
 	         em.close();
 	       }
 	}
-	}
+}
 	
 
