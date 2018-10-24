@@ -13,6 +13,9 @@ public class Produto {
     private long id;
     private String nome;
     private double precoCompra;
+    private double precoVenda;
+
+    
     private int quantEstoque;
     @ManyToOne
     private Categoria categoria;
@@ -55,5 +58,12 @@ public class Produto {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+    public double getPrecoVenda() {
+        return precoVenda;
+    }
+
+    public void setPrecoVenda(double precoVenda) {
+        this.precoVenda = precoVenda;
     }
 }
