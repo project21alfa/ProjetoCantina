@@ -19,6 +19,8 @@ public class TelaEscolhaCidade extends javax.swing.JDialog {
         DAOCidade daoC = new DAOCidade();
         listCidadade = daoC.buscarCidade(est);
         
+        updateTable();
+        
     }
     
     public TelaEscolhaCidade(java.awt.Frame parent, boolean modal){

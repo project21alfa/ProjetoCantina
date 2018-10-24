@@ -23,6 +23,7 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
         initComponents();
         updateTable();
         setMask();
+       
     }
 
     @SuppressWarnings("unchecked")
@@ -53,6 +54,11 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
         ftxtCnpj = new javax.swing.JFormattedTextField();
 
         editar.setText("Editar");
+        editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarActionPerformed(evt);
+            }
+        });
         popupMenu.add(editar);
 
         deletar.setText("Deletar");
@@ -223,15 +229,16 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
                 !txtEmail.getText().trim().isEmpty() &&
                 !txtNome.getText().trim().isEmpty() && 
                 !ftxtTelefone.getText().trim().isEmpty() &&
-                cbEstado.getSelectedIndex() != 0){
+                cbEstado.getSelectedIndex() != 1){
             
             Fornecedor fornecedor = new Fornecedor();
-                        
+                      
             fornecedor.setNome(txtNome.getText().trim().toUpperCase());
             fornecedor.setEmail(txtEmail.getText().trim().toUpperCase());
             fornecedor.setCnpj(getCnpj());
             fornecedor.setTelefone(getTelefone());
             fornecedor.setCidade(cidade);
+            
             
             listFornecedor.add(fornecedor);
             limparCampos();
@@ -280,6 +287,13 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
         TelaEscolhaCidade telaEC = new TelaEscolhaCidade(null, true, estado);
         cidade = telaEC.getCidade();
     }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
+        TelaAlterarFornecdor telaAF = new TelaAlterarFornecdor(null, true, listFornecedor.get(tabela.getSelectedRow()));
+        telaAF.setVisible(true);
+        listFornecedor.set(tabela.getSelectedRow(), telaAF.getFornecedor());
+        updateTable();       
+    }//GEN-LAST:event_editarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

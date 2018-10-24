@@ -41,13 +41,13 @@ public class DAOGenerico<T> {
 		}
 	}
         
-	  public T findPessoaByNome(String nome) {
+	 /* public T findPessoaByNome(String nome) {
 		  em = Fabrica.getFabrica().createEntityManager();
 	        Query query = em.createQuery("from Pessoa as pessoa where pessoa.nome = :param");
 	        query.setParameter("param", nome);
 	        System.out.println(query.getResultList().size());
 	       return (T) query.getResultList().get(0);
-	    }
+	    } */
 	  public List<Cidade> listarCidade(Class c){
 			em = Fabrica.getFabrica().createEntityManager();
 			try{
