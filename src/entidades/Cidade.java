@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Cidade {
@@ -18,7 +19,8 @@ public class Cidade {
 	private String nome;
 	@ManyToOne
 	private Estado estado;
-	
+        @OneToOne
+	private Estado sigla;
 
 	public long getId() {
 		return id;

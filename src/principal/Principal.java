@@ -14,11 +14,12 @@ public class Principal {
        // telaP.setVisible(true);
        
         Estado est = new Estado();
-        est.setNome("PARANÁ");
-        est.setSigla("PR");
+        est.setNome("SÃO PAULO");
+        est.setSigla("SP");
         
         DAOGenerico<Estado> dao = new DAOGenerico<>();
         dao.salvar(est);
+        
     }
     
 }
