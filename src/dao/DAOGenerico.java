@@ -1,3 +1,4 @@
+
 package dao;
 
 import java.util.List;
@@ -8,10 +9,32 @@ import javax.persistence.Query;
 
 import fabrica.Fabrica;
 import entidades.Cidade;
+import java.util.ArrayList;
 
 public class DAOGenerico<T> {
 	private EntityManager em;
 	
+	 public T findByNomeF(String nome) {
+		  em = Fabrica.getFabrica().createEntityManager();
+	        Query query = em.createQuery("from Fornecedor as fornecedor where fornecedor.nome = :param");
+	        query.setParameter("param", nome);
+	        System.out.println(query.getResultList().size());
+	       return (T) query.getResultList().get(0);
+	    }
+	  public T findByNomeC(String nome) {
+		  em = Fabrica.getFabrica().createEntityManager();
+	        Query query = em.createQuery("from Cidade as cidade where cidade.nome = :param");
+	        query.setParameter("param", nome);
+	        System.out.println(query.getResultList().size());
+	       return (T) query.getResultList().get(0);
+	    }
+	  public T findByNomeE(String nome) {
+		  em = Fabrica.getFabrica().createEntityManager();
+	        Query query = em.createQuery("from Estado as estado where estado.nome = :param");
+	        query.setParameter("param", nome);
+	        System.out.println(query.getResultList().size());
+	       return (T) query.getResultList().get(0);
+	    }
 	public T salvar(T entidade ){
 		em = Fabrica.getFabrica().createEntityManager();
 		EntityTransaction t = em.getTransaction();
@@ -28,7 +51,6 @@ public class DAOGenerico<T> {
 		
 		return entidade;
 	}
-        
 	public T consultar(Class c, String nome){
 		em = Fabrica.getFabrica().createEntityManager();
 		try{
@@ -40,18 +62,20 @@ public class DAOGenerico<T> {
 			em.close();
 		}
 	}
-        
-	 /* public T findPessoaByNome(String nome) {
+	  public T findByNome(String nome) {
 		  em = Fabrica.getFabrica().createEntityManager();
 	        Query query = em.createQuery("from Pessoa as pessoa where pessoa.nome = :param");
 	        query.setParameter("param", nome);
 	        System.out.println(query.getResultList().size());
 	       return (T) query.getResultList().get(0);
-	    } */
-	  public List<Cidade> listarCidade(Class c){
+	    }
+	 
+	  public List<Cidade> listarCidade(){
+		  	List<Cidade> lista = new ArrayList<Cidade>();
 			em = Fabrica.getFabrica().createEntityManager();
 			try{
-				return em.createQuery("from"+c.getSimpleName()).getResultList();
+				lista = em.createQuery("from Cidade").getResultList();
+				return lista;
 			}catch(Exception e){
 				e.printStackTrace();
 				return null;
@@ -59,8 +83,8 @@ public class DAOGenerico<T> {
 				em.close();
 			}
 			
-	}
-          
+		}
+	
 	public List<T> listar(Class c){
 		em = Fabrica.getFabrica().createEntityManager();
 		try{
@@ -73,7 +97,6 @@ public class DAOGenerico<T> {
 		}
 		
 	}
-        
 	public boolean excluir(Class c, long id) {
 		em = Fabrica.getFabrica().createEntityManager();
 		EntityTransaction t = em.getTransaction();
@@ -92,7 +115,6 @@ public class DAOGenerico<T> {
 			em.close();
 		}
 	}
-        
 	public boolean alterar(T entidade, Class c, long id){
 	      em = Fabrica.getFabrica().createEntityManager();
 	      EntityTransaction t = em.getTransaction();
@@ -110,6 +132,6 @@ public class DAOGenerico<T> {
 	         em.close();
 	       }
 	}
-}
+	}
 	
 

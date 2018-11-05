@@ -286,6 +286,10 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
             limparCampos();
             updateTable();
         }
+        else{
+            JOptionPane.showMessageDialog(null,"ERRO: Preencha todos os Campos","ERRO!!",JOptionPane.ERROR_MESSAGE);
+                   
+        }
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnCadastrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarTodosActionPerformed

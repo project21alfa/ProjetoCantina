@@ -1,5 +1,6 @@
 package tela;
 
+import dao.DAOEstado;
 import dao.DAOGenerico;
 import entidades.Cidade;
 import entidades.Cliente;
@@ -18,6 +19,11 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
     private List<Fornecedor> listFornecedor = new ArrayList<>();
     private Cidade cidade = new Cidade();
     private Estado estado = new Estado();
+    private List<Estado> listE = new ArrayList<>();
+    DAOEstado daoE = new DAOEstado();
+    DAOGenerico<Fornecedor> daoP = new DAOGenerico<Fornecedor>();
+    Fornecedor fornecedor = new Fornecedor();
+    
     
     public TelaCadastroFornecedor() {
         initComponents();
@@ -82,6 +88,12 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Cidade");
 
+        txtNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomeActionPerformed(evt);
+            }
+        });
+
         txtCidade.setEditable(false);
 
         tabela.setModel(new javax.swing.table.DefaultTableModel(
@@ -92,9 +104,17 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nome ", "Email", "Cnpj", "Telefone"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         tabela.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 tabelaMouseReleased(evt);
@@ -295,6 +315,10 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
         updateTable();       
     }//GEN-LAST:event_editarActionPerformed
 
+    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomeActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionar;
@@ -321,6 +345,19 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
   
+     private void attCBox() {
+        
+        listE = daoE.listarEstado();
+        for (Estado est : listE) {
+            cbEstado.addItem(est.getNome());
+        }
+    }
+     private void pesquisar(){
+         DefaultTableModel val = (DefaultTableModel) tabela.getModel();
+         fornecedor = daoP.findByNomeF(txtNome.getText());
+				
+         val.addRow(new String[]{fornecedor.getNome(),fornecedor.getEmail(),fornecedor.getCnpj()});
+     }
     private void updateTable(){
         DefaultTableModel modelo = new DefaultTableModel(){
             @Override
@@ -398,5 +435,6 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
         return cnpj;
         
     }
+    
     
 }

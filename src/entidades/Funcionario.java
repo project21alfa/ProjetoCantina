@@ -14,7 +14,6 @@ public class Funcionario {
     private String login;
     private String senha;
     private String cpf;
-    private String rg;
     
     public String getNome() {
         return nome;
@@ -30,15 +29,7 @@ public class Funcionario {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
-    }
-
-    public String getRg() {
-        return rg;
-    }
-
-    public void setRg(String rg) {
-        this.rg = rg;
-    }
+    }    
 
     public long getId() {
         return id;

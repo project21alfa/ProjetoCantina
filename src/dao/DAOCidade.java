@@ -6,6 +6,7 @@ import fabrica.Fabrica;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 public class DAOCidade {
     EntityManager em;    
@@ -27,5 +28,13 @@ public class DAOCidade {
         
         return listCidade;  
     }
+     public Cidade findByNome(String nome) {
+		  em = Fabrica.getFabrica().createEntityManager();
+	        Query query = em.createQuery("from Cidade as cidade where cidade.nome = :param");
+	        query.setParameter("param", nome);
+	        System.out.println(query.getResultList().size());
+	       return (Cidade) query.getResultList().get(0);
+	    }
+	 
     
 }
