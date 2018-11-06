@@ -6,20 +6,19 @@ import tela.TelaPrincipal;
 import dao.DAOGenerico;
 import entidades.Cidade;
 import entidades.Estado;
+import tela.TelaLogin;
 public class Principal {
 
     public static void main(String[] args) {
         
-       // TelaPrincipal telaP = new TelaPrincipal();
-       // telaP.setVisible(true);
+       TelaPrincipal telaP = new TelaPrincipal();
+       telaP.setVisible(true);
        
-        Estado est = new Estado();
-        est.setNome("SÃO PAULO");
-        est.setSigla("SP");
-        
-        DAOGenerico<Estado> dao = new DAOGenerico<>();
-        dao.salvar(est);
-        
+       TelaLogin telaL = new TelaLogin(null, true);
+       telaL.setVisible(true);
+       
+       telaP.setFuncionario(telaL.getFuncionario());
+       
     }
     
 }

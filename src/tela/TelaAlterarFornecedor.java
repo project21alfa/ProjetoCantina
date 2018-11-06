@@ -7,18 +7,18 @@ import java.text.ParseException;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 
-public class TelaAlterarFornecdor extends javax.swing.JDialog {
+public class TelaAlterarFornecedor extends javax.swing.JDialog {
 
     private Fornecedor fornecedor = new Fornecedor();
     private Cidade cidade = new Cidade();
     private Estado estado =  new Estado();
 
-    public TelaAlterarFornecdor(java.awt.Frame parent, boolean modal) {
+    public TelaAlterarFornecedor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
 
-    public TelaAlterarFornecdor(java.awt.Frame parent, boolean modal, Fornecedor f) {
+    public TelaAlterarFornecedor(java.awt.Frame parent, boolean modal, Fornecedor f) {
         super(parent, modal);
         initComponents();
         fornecedor = f;
@@ -203,20 +203,21 @@ public class TelaAlterarFornecdor extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaAlterarFornecdor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaAlterarFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaAlterarFornecdor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaAlterarFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaAlterarFornecdor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaAlterarFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaAlterarFornecdor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaAlterarFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TelaAlterarFornecdor dialog = new TelaAlterarFornecdor(new javax.swing.JFrame(), true);
+                TelaAlterarFornecedor dialog = new TelaAlterarFornecedor(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

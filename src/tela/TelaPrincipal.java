@@ -1,9 +1,11 @@
 
 package tela;
 
+import entidades.Funcionario;
+
 
 public class TelaPrincipal extends javax.swing.JFrame {
-    
+    private Funcionario f;
    
     public TelaPrincipal() {
         initComponents();
@@ -222,4 +224,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     // End of variables declaration//GEN-END:variables
+    
+    public void setFuncionario(Funcionario f){
+        this.f = f;
+    }
+
 }

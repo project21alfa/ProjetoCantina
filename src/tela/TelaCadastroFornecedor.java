@@ -309,7 +309,7 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
-        TelaAlterarFornecdor telaAF = new TelaAlterarFornecdor(null, true, listFornecedor.get(tabela.getSelectedRow()));
+        TelaAlterarFornecedor telaAF = new TelaAlterarFornecedor(null, true, listFornecedor.get(tabela.getSelectedRow()));
         telaAF.setVisible(true);
         listFornecedor.set(tabela.getSelectedRow(), telaAF.getFornecedor());
         updateTable();       

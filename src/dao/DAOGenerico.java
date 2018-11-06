@@ -11,6 +11,7 @@ import fabrica.Fabrica;
 import entidades.Cidade;
 import java.util.ArrayList;
 
+
 public class DAOGenerico<T> {
 	private EntityManager em;
 	
