@@ -6,11 +6,26 @@ import fabrica.Fabrica;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 public class DAOCidade {
     EntityManager em;    
-    
+    	public List<Cidade> listarCidade(long id) {
+		List<Cidade> lista = new ArrayList<Cidade>();
+		EntityManager em = Fabrica.getFabrica().createEntityManager();
+		EntityTransaction t = em.getTransaction();
+		try {
+			lista = em.createQuery("from Cidade where estado_id = " + id).getResultList();
+			return lista;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			em.close();
+		}
+
+	}
     public List<Cidade> buscarCidade(Estado est){
         List<Cidade> listCidade = new ArrayList<>();
         em = Fabrica.getFabrica().createEntityManager();

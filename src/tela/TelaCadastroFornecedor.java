@@ -306,6 +306,8 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         TelaEscolhaCidade telaEC = new TelaEscolhaCidade(null, true, estado);
         cidade = telaEC.getCidade();
+        telaEC.show();
+        
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed

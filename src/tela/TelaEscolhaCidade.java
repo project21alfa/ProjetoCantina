@@ -44,6 +44,11 @@ public class TelaEscolhaCidade extends javax.swing.JDialog {
         setTitle("Tabela CIdades");
 
         jButton1.setText("Pesquisar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -118,7 +123,13 @@ public class TelaEscolhaCidade extends javax.swing.JDialog {
         
         dispose();
         
+        
     }//GEN-LAST:event_tabelaMousePressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+            
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
