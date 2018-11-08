@@ -13,6 +13,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     TelaCadastroCliente telaCC = new TelaCadastroCliente();
     TelaCadastroProduto tcp = new TelaCadastroProduto();
     TelaCadastroFornecedor telaCF = new TelaCadastroFornecedor();
+    TelaCadastroFuncionario telaCFF = new TelaCadastroFuncionario();
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -165,9 +167,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-       if(telaCF.getDesktopPane() == null){
-            jDesktopPane1.add(telaCF);
-            telaCF.show();
+       if(telaCFF.getDesktopPane() == null){
+            jDesktopPane1.add(telaCFF);
+            telaCFF.show();
         }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 

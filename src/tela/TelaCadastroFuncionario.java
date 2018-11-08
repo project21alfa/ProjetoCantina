@@ -1,7 +1,8 @@
 package tela;
 
+import entidades.Funcionario;
 import javax.swing.JPasswordField;
-
+import dao.DAOGenerico;
 public class TelaCadastroFuncionario extends javax.swing.JInternalFrame {
 
     public TelaCadastroFuncionario() {
@@ -115,12 +116,20 @@ public class TelaCadastroFuncionario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimparCamposActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(!txtLogin.getText().trim().isEmpty() && 
+            Funcionario f = new Funcionario();
+                f.setLogin(txtLogin.getText());
+                f.setNome(txtNome.getText());
+                f.setSenha(pwSenha);
+                DAOGenerico dd = new DAOGenerico();
+                dd.salvar(f);
+            if(pwSenha == pwConfirma){
+           
+            }
+             if(!txtLogin.getText().trim().isEmpty() && 
                 !txtNome.getText().trim().isEmpty() && 
                 !getSenha(pwSenha).trim().isEmpty() &&
                 !getSenha(pwConfirma).trim().isEmpty() &&
                 getSenha(pwSenha).equals(getSenha(pwConfirma))){
-            
         }        
     }//GEN-LAST:event_jButton2ActionPerformed
 

@@ -29,7 +29,7 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
         initComponents();
         updateTable();
         setMask();
-       
+        attCBox();
     }
 
     @SuppressWarnings("unchecked")

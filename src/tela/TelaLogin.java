@@ -97,13 +97,15 @@ public class TelaLogin extends javax.swing.JDialog {
            f = dao.findByLogin(txtLogin.getText());
            
            if( f != null){
-               if(f.getSenha() == String.valueOf(pwSenha.getPassword())){
+               dispose();
+              // if(f.getSenha() == String.valueOf(pwSenha.getText())){
                    dispose();
-               }
-               else{
-                   JOptionPane.showMessageDialog(null, "ERRO: Senha incorreta", "ERRO!!!", 
-                        JOptionPane.ERROR_MESSAGE);
-               }
+                   
+              // }
+              // else{
+              //     JOptionPane.showMessageDialog(null, "ERRO: Senha incorreta", "ERRO!!!", 
+             //           JOptionPane.ERROR_MESSAGE);
+             //  }
            }
            else{
                JOptionPane.showMessageDialog(null, "ERRO: Login incorreto", "ERRO!!!", 
