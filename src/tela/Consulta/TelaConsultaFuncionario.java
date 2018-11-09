@@ -3,18 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tela;
-
+package tela.Consulta;
+import dao.DAOFuncionario;
+import entidades.Cliente;
+import entidades.Funcionario;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author santy
  */
-public class TelaConsultaProduto extends javax.swing.JInternalFrame {
-
+public class TelaConsultaFuncionario extends javax.swing.JInternalFrame {
+    DAOFuncionario dao = new DAOFuncionario();
+    Funcionario f = new Funcionario();
     /**
      * Creates new form TelaConsultaCliente
      */
-    public TelaConsultaProduto() {
+    public TelaConsultaFuncionario() {
         initComponents();
     }
 
@@ -32,7 +36,6 @@ public class TelaConsultaProduto extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         txtNome = new javax.swing.JTextPane();
         jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
 
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -50,11 +53,9 @@ public class TelaConsultaProduto extends javax.swing.JInternalFrame {
         jScrollPane2.setViewportView(txtNome);
 
         jButton1.setText("Pesquisar");
-
-        jButton3.setText("Salvar Alterações");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -69,39 +70,69 @@ public class TelaConsultaProduto extends javax.swing.JInternalFrame {
                 .addGap(46, 46, 46)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(53, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(57, 57, 57))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jButton3)
-                .addGap(21, 21, 21))
+                .addGap(74, 74, 74))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        f= dao.findByName(txtNome.getText());
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tabela;
     private javax.swing.JTextPane txtNome;
     // End of variables declaration//GEN-END:variables
+
+    private void updateTable(){
+        
+        DefaultTableModel modelo = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+            
+        };
+     
+        modelo.addColumn("Nome");
+        modelo.addColumn("CPF");
+        modelo.addColumn("login");
+        modelo.addColumn("senha");
+        modelo.addColumn("");
+        modelo.addColumn("CPF");
+        
+        for(Cliente c : listCliente){
+            
+            modelo.addRow(new Object[]{
+                c.getNome(),
+                c.getCidade().getNome(),
+                c.getCidade().getEstado().getNome(),
+                c.getEmail(),
+                c.getTelefone(),
+                c.getCpf()            
+            });
+            
+        }       
+        
+        tabela.setModel(modelo);      
+      
+        
+    }
 }

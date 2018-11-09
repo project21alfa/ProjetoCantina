@@ -16,4 +16,11 @@ public class DAOFuncionario {
         System.out.println(query.getResultList().size());
         return (Funcionario) query.getResultList().get(0);
     }
+     public Funcionario findByName(String nome) {
+        em = Fabrica.getFabrica().createEntityManager();
+        Query query = em.createQuery("from Funcionario as Funcionario where Funcionario.nome = :param");
+        query.setParameter("param", nome);
+        System.out.println(query.getResultList().size());
+        return (Funcionario) query.getResultList().get(0);
+    }
 }
