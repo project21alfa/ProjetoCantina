@@ -1,4 +1,4 @@
-package tela;
+package principal;
 
 import dao.DAOFuncionario;
 import entidades.Funcionario;

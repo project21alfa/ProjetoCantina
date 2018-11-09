@@ -2,11 +2,9 @@
 package principal;
 
 import dao.DAOCidade;
-import tela.TelaPrincipal;
 import dao.DAOGenerico;
 import entidades.Cidade;
 import entidades.Estado;
-import tela.TelaLogin;
 public class Principal {
 
     public static void main(String[] args) {

@@ -1,12 +1,16 @@
-
-package tela;
+package principal;
 
 import entidades.Funcionario;
-
+import tela.TelaCadastroCliente;
+import tela.TelaCadastroFornecedor;
+import tela.TelaCadastroFuncionario;
+import tela.TelaCadastroProduto;
+import telasRelatório.TelaRelatorioCliente;
 
 public class TelaPrincipal extends javax.swing.JFrame {
+
     private Funcionario f;
-   
+
     public TelaPrincipal() {
         initComponents();
     }
@@ -14,7 +18,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     TelaCadastroProduto tcp = new TelaCadastroProduto();
     TelaCadastroFornecedor telaCF = new TelaCadastroFornecedor();
     TelaCadastroFuncionario telaCFF = new TelaCadastroFuncionario();
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -96,6 +100,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         jMenuItem4.setText("Cliente");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuItem5.setText("Funcionário");
@@ -164,33 +173,33 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        if (telaCC.getDesktopPane() == null){
-            jDesktopPane1.add(telaCC);            
+        if (telaCC.getDesktopPane() == null) {
+            jDesktopPane1.add(telaCC);
         }
-        
+
         telaCC.show();
-            
+
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        if(telaCF.getDesktopPane() == null){
+        if (telaCF.getDesktopPane() == null) {
             jDesktopPane1.add(telaCF);
             telaCF.show();
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        if (tcp.getDesktopPane() == null){
-            jDesktopPane1.add(tcp);            
+        if (tcp.getDesktopPane() == null) {
+            jDesktopPane1.add(tcp);
         }
-        
+
         tcp.show();
-        
+
 
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-       if(telaCFF.getDesktopPane() == null){
+        if (telaCFF.getDesktopPane() == null) {
             jDesktopPane1.add(telaCFF);
             telaCFF.show();
         }
@@ -200,9 +209,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        TelaRelatorioCliente telaRC = new TelaRelatorioCliente();
+        telaRC.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -233,7 +244,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 new TelaPrincipal().setVisible(true);
             }
         });
-        
+
         TelaLogin telaL = new TelaLogin(null, true);
         telaL.setVisible(true);
     }
@@ -257,8 +268,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
-    
-    public void setFuncionario(Funcionario f){
+
+    public void setFuncionario(Funcionario f) {
         this.f = f;
     }
 
