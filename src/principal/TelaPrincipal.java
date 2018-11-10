@@ -6,6 +6,7 @@ import tela.TelaCadastroFornecedor;
 import tela.TelaCadastroFuncionario;
 import tela.TelaCadastroProduto;
 import telasRelatório.TelaRelatorioCliente;
+import telasRelatório.TelaRelatorioFuncionario;
 
 public class TelaPrincipal extends javax.swing.JFrame {
 
@@ -164,7 +165,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
+        TelaRelatorioFuncionario telaRF = new TelaRelatorioFuncionario();
+        telaRF.setVisible(true);
+
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
