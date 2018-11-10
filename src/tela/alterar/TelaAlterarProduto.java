@@ -6,20 +6,17 @@
 package tela.alterar;
 
 import dao.DAOGenerico;
-import entidades.Cidade;
-import entidades.Cliente;
-import entidades.Estado;
 import entidades.Produto;
-import tela.TelaCadastroCliente;
-import tela.TelaCadastroProduto;
-import tela.TelaEscolhaCidade;
+import tela.Consulta.TelaConsultaProduto;
+
+
 
 /**
  *
  * @author santy
  */
 public class TelaAlterarProduto extends javax.swing.JFrame {
-    TelaCadastroProduto Telap = new TelaCadastroProduto();
+    TelaConsultaProduto Telap = new TelaConsultaProduto();
     Produto p = new Produto();
     /**
      * Creates new form TelaAlterarCliente

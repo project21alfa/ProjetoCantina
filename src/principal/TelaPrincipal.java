@@ -1,6 +1,10 @@
 package principal;
 
 import entidades.Funcionario;
+import tela.Consulta.TelaConsultaCliente;
+import tela.Consulta.TelaConsultaFornecedor;
+import tela.Consulta.TelaConsultaFuncionario;
+import tela.Consulta.TelaConsultaProduto;
 import tela.TelaCadastroCliente;
 import tela.TelaCadastroFornecedor;
 import tela.TelaCadastroFuncionario;
@@ -19,6 +23,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     TelaCadastroProduto tcp = new TelaCadastroProduto();
     TelaCadastroFornecedor telaCF = new TelaCadastroFornecedor();
     TelaCadastroFuncionario telaCFF = new TelaCadastroFuncionario();
+    TelaConsultaFuncionario telaCoFF = new TelaConsultaFuncionario();
+    TelaConsultaCliente telaCoC = new TelaConsultaCliente();
+    TelaConsultaProduto telaCop = new TelaConsultaProduto();
+    TelaConsultaFornecedor telaCoF = new TelaConsultaFornecedor();
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -138,12 +147,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu3.add(jMenuItem8);
 
         jMenuItem9.setText("Cliente");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem9);
 
         jMenuItem10.setText("Produto");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem10);
 
         jMenuItem11.setText("Fornecedor");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem11);
 
         jMenuBar1.add(jMenu3);
@@ -209,13 +233,37 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        // TODO add your handling code here:
+         if (telaCoFF.getDesktopPane() == null) {
+            jDesktopPane1.add(telaCoFF);
+            telaCoFF.show();
+        }
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         TelaRelatorioCliente telaRC = new TelaRelatorioCliente();
         telaRC.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        if (telaCoC.getDesktopPane() == null) {
+            jDesktopPane1.add(telaCoC);
+            telaCoC.show();
+        }
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        if (telaCop.getDesktopPane() == null) {
+            jDesktopPane1.add(telaCop);
+            telaCop.show();
+        }
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        if (telaCoF.getDesktopPane() == null) {
+            jDesktopPane1.add(telaCoF);
+            telaCoF.show();
+        }
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

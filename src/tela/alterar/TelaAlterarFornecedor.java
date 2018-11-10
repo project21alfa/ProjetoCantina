@@ -6,9 +6,9 @@
 package tela.alterar;
 
 import dao.DAOGenerico;
-import entidades.Cliente;
 import entidades.Fornecedor;
-import tela.TelaCadastroFornecedor;
+import tela.Consulta.TelaConsultaFornecedor;
+
 
 
 
@@ -17,7 +17,7 @@ import tela.TelaCadastroFornecedor;
  * @author santy
  */
 public class TelaAlterarFornecedor extends javax.swing.JFrame {
-    TelaCadastroFornecedor Telaf = new TelaCadastroFornecedor();
+    TelaConsultaFornecedor Telaf = new TelaConsultaFornecedor();
     Fornecedor f = new Fornecedor();
     /**
      * Creates new form TelaAlterarCliente

@@ -437,10 +437,7 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
         return cnpj;
         
     }
-     public Fornecedor forn(){
-        
-        return fornecedor;
-    }
+    
     
     
 }

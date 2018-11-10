@@ -9,7 +9,7 @@ import dao.DAOGenerico;
 import entidades.Cidade;
 import entidades.Cliente;
 import entidades.Estado;
-import tela.TelaCadastroCliente;
+import tela.Consulta.TelaConsultaCliente;
 import tela.TelaEscolhaCidade;
 
 /**
@@ -17,7 +17,7 @@ import tela.TelaEscolhaCidade;
  * @author santy
  */
 public class TelaAlterarCliente extends javax.swing.JFrame {
-    TelaCadastroCliente Telac = new TelaCadastroCliente();
+    TelaConsultaCliente Telac = new TelaConsultaCliente();
     Cliente c = new Cliente();
     /**
      * Creates new form TelaAlterarCliente

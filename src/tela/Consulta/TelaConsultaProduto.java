@@ -34,6 +34,8 @@ public class TelaConsultaProduto extends javax.swing.JInternalFrame {
         txtNome = new javax.swing.JTextPane();
         jButton1 = new javax.swing.JButton();
 
+        setClosable(true);
+
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
