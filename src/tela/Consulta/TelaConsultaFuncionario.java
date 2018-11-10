@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import tela.alterar.TelaAlterarFuncionario;
 
 public class TelaConsultaFuncionario extends javax.swing.JInternalFrame {
 
@@ -22,12 +23,21 @@ public class TelaConsultaFuncionario extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         popupMenu = new javax.swing.JPopupMenu();
+        miAlterar = new javax.swing.JMenuItem();
         miExcluir = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtNome = new javax.swing.JTextPane();
         btnPesquisar = new javax.swing.JButton();
+
+        miAlterar.setText("jMenuItem1");
+        miAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miAlterarActionPerformed(evt);
+            }
+        });
+        popupMenu.add(miAlterar);
 
         miExcluir.setText("Excluir");
         miExcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -120,11 +130,26 @@ public class TelaConsultaFuncionario extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_tabelaMouseReleased
 
+    private void miAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAlterarActionPerformed
+        Funcionario f = listFuncionario.get(tabela.getSelectedRow());
+        String senha = JOptionPane.showInputDialog("Informe a senha");
+        
+        if(f.getSenha() == senha){
+            TelaAlterarFuncionario telaAF = new TelaAlterarFuncionario(null, true, f);
+            telaAF.setVisible(true);
+            f = telaAF.getFuncionario();
+            
+            dao.alterar(f);
+        }
+            
+    }//GEN-LAST:event_miAlterarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JMenuItem miAlterar;
     private javax.swing.JMenuItem miExcluir;
     private javax.swing.JPopupMenu popupMenu;
     private javax.swing.JTable tabela;

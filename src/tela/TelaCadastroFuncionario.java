@@ -3,10 +3,17 @@ package tela;
 import entidades.Funcionario;
 import javax.swing.JPasswordField;
 import dao.DAOGenerico;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
+
 public class TelaCadastroFuncionario extends javax.swing.JInternalFrame {
 
     public TelaCadastroFuncionario() {
         initComponents();
+        setMask();
     }
 
     @SuppressWarnings("unchecked")
@@ -23,6 +30,8 @@ public class TelaCadastroFuncionario extends javax.swing.JInternalFrame {
         pwConfirma = new javax.swing.JPasswordField();
         btnLimparCampos = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        ftxtCpf = new javax.swing.JFormattedTextField();
 
         setClosable(true);
         setTitle("Cadastro Funcionário");
@@ -49,6 +58,8 @@ public class TelaCadastroFuncionario extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel5.setText("CPF");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -65,20 +76,26 @@ public class TelaCadastroFuncionario extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(36, 36, 36)
+                                .addGap(39, 39, 39)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(pwSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
                                     .addComponent(txtLogin)
                                     .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(pwConfirma, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(pwConfirma, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel5))
+                                        .addGap(36, 36, 36)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(pwSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                            .addComponent(ftxtCpf))))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(30, 30, 30))
         );
@@ -93,6 +110,10 @@ public class TelaCadastroFuncionario extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(ftxtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -101,11 +122,11 @@ public class TelaCadastroFuncionario extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(pwConfirma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLimparCampos)
                     .addComponent(jButton2))
-                .addGap(31, 31, 31))
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -116,47 +137,68 @@ public class TelaCadastroFuncionario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimparCamposActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        if (!txtLogin.getText().trim().isEmpty()
+                && !txtNome.getText().trim().isEmpty()
+                && !getSenha(pwSenha).trim().isEmpty()
+                && !getSenha(pwConfirma).trim().isEmpty()
+                && !getCpf().isEmpty()
+                && getSenha(pwSenha).equals(getSenha(pwConfirma))) {
+            
             Funcionario f = new Funcionario();
-                f.setLogin(txtLogin.getText());
-                f.setNome(txtNome.getText());
-                f.setSenha(pwSenha);
-                DAOGenerico dd = new DAOGenerico();
-                dd.salvar(f);
-            if(pwSenha == pwConfirma){
-           
-            }
-             if(!txtLogin.getText().trim().isEmpty() && 
-                !txtNome.getText().trim().isEmpty() && 
-                !getSenha(pwSenha).trim().isEmpty() &&
-                !getSenha(pwConfirma).trim().isEmpty() &&
-                getSenha(pwSenha).equals(getSenha(pwConfirma))){
-        }        
+            f.setLogin(txtLogin.getText());
+            f.setNome(txtNome.getText());
+            f.setSenha(pwSenha);
+            f.setSenha(getSenha(pwSenha));
+            f.setCpf(getCpf());
+            DAOGenerico dd = new DAOGenerico();
+            dd.salvar(f);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimparCampos;
+    private javax.swing.JFormattedTextField ftxtCpf;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPasswordField pwConfirma;
     private javax.swing.JPasswordField pwSenha;
     private javax.swing.JTextField txtLogin;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 
-    private void limparCampos(){
+    private void limparCampos() {
         txtLogin.setText("");
         txtNome.setText("");
         pwConfirma.setText("");
         pwSenha.setText("");
     }
-    
-    private String getSenha(JPasswordField jp){
-        
-        return String.valueOf(jp.getPassword());     
+
+    private String getSenha(JPasswordField jp) {
+
+        return String.valueOf(jp.getPassword());
     }
 
+    private void setMask() {
+        try {
+            ftxtCpf.setFormatterFactory(new DefaultFormatterFactory(
+                    new MaskFormatter("###.###.###-##")));
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private String getCpf() {
+
+        String cpf = ftxtCpf.getText().trim().replace(".", "");
+        cpf = cpf.replace("-", "");
+
+        return cpf;
+
+    }
 }

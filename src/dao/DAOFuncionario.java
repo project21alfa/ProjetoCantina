@@ -65,4 +65,24 @@ public class DAOFuncionario {
         }
     }
     
+    public boolean alterar(Funcionario f){
+        em = Fabrica.getFabrica().createEntityManager();
+        t = em.getTransaction();
+        
+        try{
+            t.begin();
+            f = em.find(f.getClass(), f.getId());
+            em.merge(f);
+            t.commit();
+            return true;
+        }
+        catch(PersistenceException pe){
+            pe.printStackTrace();
+            return false;
+        }
+        finally{
+            em.close();
+        }
+    }
+    
 }
