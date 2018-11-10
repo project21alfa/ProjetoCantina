@@ -28,7 +28,7 @@ public class TelaConsultaCliente extends javax.swing.JInternalFrame {
         tabela = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtNome = new javax.swing.JTextPane();
-        jButton1 = new javax.swing.JButton();
+        btnPesquisar = new javax.swing.JButton();
 
         miAlterar.setText("jMenuItem1");
         miAlterar.addActionListener(new java.awt.event.ActionListener() {
@@ -46,8 +46,6 @@ public class TelaConsultaCliente extends javax.swing.JInternalFrame {
         });
         popupMenu.add(miExcluir);
 
-        setClosable(true);
-
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -63,7 +61,12 @@ public class TelaConsultaCliente extends javax.swing.JInternalFrame {
 
         jScrollPane2.setViewportView(txtNome);
 
-        jButton1.setText("Pesquisar");
+        btnPesquisar.setText("Pesquisar");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,7 +77,7 @@ public class TelaConsultaCliente extends javax.swing.JInternalFrame {
                 .addGap(31, 31, 31)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(53, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -83,7 +86,7 @@ public class TelaConsultaCliente extends javax.swing.JInternalFrame {
                 .addContainerGap(21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(btnPesquisar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -93,10 +96,10 @@ public class TelaConsultaCliente extends javax.swing.JInternalFrame {
 
     private void miAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAlterarActionPerformed
         Cliente c = listCliente.get(tabela.getSelectedRow());
-        String senha = JOptionPane.showInputDialog("Informe a senha");
         
         TelaAlterarCliente telaAC = new TelaAlterarCliente(null, true, c);
         telaAC.setVisible(true);
+        updateTable();
     }//GEN-LAST:event_miAlterarActionPerformed
 
     private void miExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miExcluirActionPerformed
@@ -109,12 +112,18 @@ public class TelaConsultaCliente extends javax.swing.JInternalFrame {
                 Cliente c = listCliente.get(tabela.getSelectedRow());
                 dao.excluir(c.getId());
             }
+            updateTable();
         }
     }//GEN-LAST:event_miExcluirActionPerformed
 
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        listCliente = dao.listByNameSearch(txtNome.getText().trim());
+        updateTable();
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnPesquisar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JMenuItem miAlterar;

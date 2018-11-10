@@ -13,7 +13,7 @@ public class DAOCliente {
     private EntityManager em;
     private EntityTransaction t;
     
-    private List<Cliente> listByNameSearch(String nome){
+    public List<Cliente> listByNameSearch(String nome){
         em = Fabrica.getFabrica().createEntityManager();
         List<Cliente> listClientes = new ArrayList<>();
         

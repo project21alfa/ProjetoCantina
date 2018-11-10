@@ -122,7 +122,7 @@ public class TelaConsultaFuncionario extends javax.swing.JInternalFrame {
             }
             
         }
-
+        updateTable();
     }//GEN-LAST:event_miExcluirActionPerformed
 
     private void tabelaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseReleased
@@ -143,6 +143,7 @@ public class TelaConsultaFuncionario extends javax.swing.JInternalFrame {
             
             dao.alterar(f);
         }
+        updateTable();
             
     }//GEN-LAST:event_miAlterarActionPerformed
 

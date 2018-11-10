@@ -1,5 +1,6 @@
 package tela;
 
+import tela.alterar.TelaAlterarFornecedor;
 import dao.DAOEstado;
 import dao.DAOGenerico;
 import entidades.Cidade;
@@ -360,6 +361,7 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
 				
          val.addRow(new String[]{fornecedor.getNome(),fornecedor.getEmail(),fornecedor.getCnpj()});
      }
+     
     private void updateTable(){
         DefaultTableModel modelo = new DefaultTableModel(){
             @Override
