@@ -10,6 +10,7 @@ import tela.TelaCadastroFornecedor;
 import tela.TelaCadastroFuncionario;
 import tela.TelaCadastroProduto;
 import telasRelatório.TelaRelatorioCliente;
+import telasRelatório.TelaRelatorioFornecedor;
 import telasRelatório.TelaRelatorioFuncionario;
 
 public class TelaPrincipal extends javax.swing.JFrame {
@@ -127,6 +128,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu2.add(jMenuItem5);
 
         jMenuItem6.setText("Fornecedor");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem6);
 
         jMenuBar1.add(jMenu2);
@@ -264,6 +270,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
             telaCoF.show();
         }
     }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        TelaRelatorioFornecedor telaRFF = new TelaRelatorioFornecedor();
+        telaRFF.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
