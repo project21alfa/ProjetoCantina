@@ -34,8 +34,8 @@ public class DAOFuncionario {
         em = Fabrica.getFabrica().createEntityManager();        
         List<Funcionario> listFuncionario = new ArrayList<>();
         
-        Query query = em.createQuery("from Funcionario as Funcionario where Funcionario.nome like 'param%'");
-        query.setParameter("param", nome);
+        Query query = em.createQuery("from Funcionario as Funcionario where Funcionario.nome like 'nome'");
+        query.setParameter("nome", nome);
         
         listFuncionario = query.getResultList();
         

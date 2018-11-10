@@ -31,7 +31,7 @@ public class TelaCadastroFuncionario extends javax.swing.JInternalFrame {
         btnLimparCampos = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        ftxtCpf = new javax.swing.JFormattedTextField();
+        txtCpf = new javax.swing.JFormattedTextField();
 
         setClosable(true);
         setTitle("Cadastro Funcionário");
@@ -95,7 +95,7 @@ public class TelaCadastroFuncionario extends javax.swing.JInternalFrame {
                                         .addGap(36, 36, 36)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(pwSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                                            .addComponent(ftxtCpf))))
+                                            .addComponent(txtCpf))))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(30, 30, 30))
         );
@@ -113,7 +113,7 @@ public class TelaCadastroFuncionario extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(ftxtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -148,9 +148,8 @@ public class TelaCadastroFuncionario extends javax.swing.JInternalFrame {
             Funcionario f = new Funcionario();
             f.setLogin(txtLogin.getText());
             f.setNome(txtNome.getText());
-            f.setSenha(pwSenha);
-            f.setSenha(getSenha(pwSenha));
-            f.setCpf(getCpf());
+            f.setSenha(pwSenha.getText());
+            f.setCpf(txtCpf.getText());
             DAOGenerico dd = new DAOGenerico();
             dd.salvar(f);
         }
@@ -159,7 +158,6 @@ public class TelaCadastroFuncionario extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimparCampos;
-    private javax.swing.JFormattedTextField ftxtCpf;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -168,6 +166,7 @@ public class TelaCadastroFuncionario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPasswordField pwConfirma;
     private javax.swing.JPasswordField pwSenha;
+    private javax.swing.JFormattedTextField txtCpf;
     private javax.swing.JTextField txtLogin;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
@@ -186,7 +185,7 @@ public class TelaCadastroFuncionario extends javax.swing.JInternalFrame {
 
     private void setMask() {
         try {
-            ftxtCpf.setFormatterFactory(new DefaultFormatterFactory(
+            txtCpf.setFormatterFactory(new DefaultFormatterFactory(
                     new MaskFormatter("###.###.###-##")));
         } catch (ParseException ex) {
             ex.printStackTrace();
@@ -195,7 +194,7 @@ public class TelaCadastroFuncionario extends javax.swing.JInternalFrame {
 
     private String getCpf() {
 
-        String cpf = ftxtCpf.getText().trim().replace(".", "");
+        String cpf = txtCpf.getText().trim().replace(".", "");
         cpf = cpf.replace("-", "");
 
         return cpf;

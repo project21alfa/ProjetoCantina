@@ -60,7 +60,7 @@
                                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="pwSenha" pref="130" max="32767" attributes="0"/>
-                                          <Component id="ftxtCpf" max="32767" attributes="0"/>
+                                          <Component id="txtCpf" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -89,7 +89,7 @@
               <EmptySpace pref="8" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ftxtCpf" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtCpf" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -161,7 +161,7 @@
         <Property name="text" type="java.lang.String" value="CPF"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="ftxtCpf">
+    <Component class="javax.swing.JFormattedTextField" name="txtCpf">
     </Component>
   </SubComponents>
 </Form>
