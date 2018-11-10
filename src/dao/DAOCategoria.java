@@ -1,0 +1,40 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import fabrica.Fabrica;
+
+import entidades.Categoria;
+
+
+/**
+ *
+ * @author santy
+ */
+public class DAOCategoria {
+
+    private EntityManager em;
+
+    public List<Categoria> listarCategoria() {
+        List<Categoria> lista = new ArrayList<Categoria>();
+        em = Fabrica.getFabrica().createEntityManager();
+        try {
+            lista = em.createQuery("from Categoria").getResultList();
+            return lista;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            em.close();
+        }
+
+    }
+}
