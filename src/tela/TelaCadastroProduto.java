@@ -295,7 +295,7 @@ public class TelaCadastroProduto extends javax.swing.JInternalFrame {
             modelo.addRow(new Object[]{
                 p.getNome(),
                 p.getQuantEstoque(),
-                p.getCategoria(),
+                p.getCategoria().getNome(),
                 p.getPrecoCompra(),
                 p.getPrecoVenda()
             
