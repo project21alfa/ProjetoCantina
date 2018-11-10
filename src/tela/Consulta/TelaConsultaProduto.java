@@ -5,15 +5,16 @@
  */
 package tela.Consulta;
 
+import entidades.Produto;
+
 /**
  *
  * @author santy
  */
 public class TelaConsultaProduto extends javax.swing.JInternalFrame {
-
-    /**
-     * Creates new form TelaConsultaCliente
-     */
+    
+    private Produto produto;
+    
     public TelaConsultaProduto() {
         initComponents();
     }
@@ -84,4 +85,10 @@ public class TelaConsultaProduto extends javax.swing.JInternalFrame {
     private javax.swing.JTable tabela;
     private javax.swing.JTextPane txtNome;
     // End of variables declaration//GEN-END:variables
+    
+    public Produto prod(){
+
+        return produto;
+    }
+
 }
