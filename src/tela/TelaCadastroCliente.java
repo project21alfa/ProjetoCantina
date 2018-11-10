@@ -424,10 +424,7 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
         return cpf;
         
     }
-    public Cliente cli(){
-        
-        return cliente;
-    }
+   
     
     
 }

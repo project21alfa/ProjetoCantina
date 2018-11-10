@@ -46,6 +46,8 @@ public class TelaConsultaCliente extends javax.swing.JInternalFrame {
         });
         popupMenu.add(miExcluir);
 
+        setClosable(true);
+
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
