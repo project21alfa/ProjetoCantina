@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class DAOGenerico<T> {
 	private EntityManager em;
+       private EntityTransaction t;
 	
 	 public T findByNomeF(String nome) {
 		  em = Fabrica.getFabrica().createEntityManager();
