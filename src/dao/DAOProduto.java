@@ -1,5 +1,6 @@
 package dao;
 
+import entidades.Categoria;
 import entidades.Produto;
 import fabrica.Fabrica;
 import java.util.ArrayList;
@@ -68,4 +69,11 @@ public class DAOProduto {
             em.close();
         }
     }
+      public Categoria findByNomeC(String nome) {
+		  em = Fabrica.getFabrica().createEntityManager();
+	        Query query = em.createQuery("from Categoria as categoria where categoria.nome = :param");
+	        query.setParameter("param", nome);
+	        System.out.println(query.getResultList().size());
+	       return (Categoria) query.getResultList().get(0);
+	    }
 }

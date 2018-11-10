@@ -2,6 +2,7 @@ package tela;
 
 import dao.DAOCategoria;
 import dao.DAOGenerico;
+import dao.DAOProduto;
 import entidades.Categoria;
 import entidades.Produto;
 import java.util.ArrayList;
@@ -234,15 +235,18 @@ public class TelaCadastroProduto extends javax.swing.JInternalFrame {
            !qtdeEst.getText().trim().isEmpty()&&
            !precoComp.getText().trim().isEmpty()&&
            !precoVen.getText().trim().isEmpty()&&
-           cbCat.getSelectedIndex() != 1){
+           cbCat.getSelectedIndex() != 0){
            
             Produto produto = new Produto();
+            Categoria ccc = new Categoria();
+            DAOProduto dp = new DAOProduto();
             
             produto.setNome(nome.getText().trim().toUpperCase());
             produto.setQuantEstoque(Integer.parseInt(qtdeEst.getText().trim()));
             produto.setPrecoCompra(Integer.parseInt(precoComp.getText().trim()));
             produto.setPrecoVenda(Integer.parseInt(precoVen.getText().trim()));
-            produto.setCategoria((Categoria) cbCat.getSelectedItem());
+            ccc =dp.findByNomeC(cbCat.getSelectedItem().toString());
+            produto.setCategoria(ccc);
                    
             
             listProd.add(produto);
@@ -309,6 +313,7 @@ public class TelaCadastroProduto extends javax.swing.JInternalFrame {
         cbCat.setSelectedIndex(0);
         precoComp.setText("");
         precoVen.setText("");
+        
         
     }
      private void attCBox() {
