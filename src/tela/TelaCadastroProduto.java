@@ -3,6 +3,7 @@ package tela;
 import dao.DAOGenerico;
 import entidades.Categoria;
 import entidades.Cliente;
+import entidades.Fornecedor;
 import entidades.Produto;
 import java.util.ArrayList;
 import java.util.List;
@@ -326,4 +327,8 @@ public class TelaCadastroProduto extends javax.swing.JInternalFrame {
     private javax.swing.JTextField qtdeEst;
     private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables
+    public Produto prod(){
+        
+        return produto;
+    }
 }

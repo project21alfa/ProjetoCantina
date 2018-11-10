@@ -5,6 +5,11 @@
  */
 package tela.alterar;
 
+import dao.DAOGenerico;
+import entidades.Cliente;
+import entidades.Fornecedor;
+import tela.TelaCadastroFornecedor;
+
 
 
 /**
@@ -12,9 +17,26 @@ package tela.alterar;
  * @author santy
  */
 public class TelaAlterarFornecedor extends javax.swing.JFrame {
-
+    TelaCadastroFornecedor Telaf = new TelaCadastroFornecedor();
+    Fornecedor f = new Fornecedor();
+    /**
+     * Creates new form TelaAlterarCliente
+     */
+    
+    
     public TelaAlterarFornecedor() {
         initComponents();
+        f = Telaf.forn();
+        
+        
+        txtEmail.setText(f.getEmail());
+        txtCnpj.setText(f.getCnpj());
+        txtEmail1.setText(f.getEmail());
+        txtNome1.setText(f.getNome());
+        txtTelefone.setText(f.getTelefone());
+        //falta pegar junto a cidade e estado....
+        
+        
     }
 
     /**
@@ -58,13 +80,18 @@ public class TelaAlterarFornecedor extends javax.swing.JFrame {
         txtEmail1 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        ftxtCnpj1 = new javax.swing.JFormattedTextField();
-        ftxtTelefone1 = new javax.swing.JFormattedTextField();
+        txtCnpj = new javax.swing.JFormattedTextField();
+        txtTelefone = new javax.swing.JFormattedTextField();
         jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("alterar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jInternalFrame1.setClosable(true);
         jInternalFrame1.setTitle("Cadastro Fornecedor");
@@ -265,7 +292,7 @@ public class TelaAlterarFornecedor extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(294, Short.MAX_VALUE)
+                .addContainerGap(290, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(34, 34, 34))
             .addComponent(jSeparator1)
@@ -282,22 +309,21 @@ public class TelaAlterarFornecedor extends javax.swing.JFrame {
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ftxtCnpj1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtEmail1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtNome1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(cbEstado1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(txtCidade1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnPesquisar1))
-                        .addComponent(ftxtTelefone1, javax.swing.GroupLayout.Alignment.LEADING)))
+                    .addComponent(txtCnpj)
+                    .addComponent(txtEmail1)
+                    .addComponent(txtNome1)
+                    .addComponent(cbEstado1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtCidade1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnPesquisar1))
+                    .addComponent(txtTelefone))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 198, Short.MAX_VALUE)
                     .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 198, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,21 +348,21 @@ public class TelaAlterarFornecedor extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(ftxtCnpj1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(ftxtTelefone1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 152, Short.MAX_VALUE)
                     .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 152, Short.MAX_VALUE)))
         );
 
         pack();
@@ -376,6 +402,16 @@ public class TelaAlterarFornecedor extends javax.swing.JFrame {
       
 
     }//GEN-LAST:event_btnPesquisar1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        DAOGenerico d = new DAOGenerico();
+        f.setNome(txtNome1.getText());
+        f.setCnpj(txtCnpj.getText());
+        f.setEmail(txtEmail1.getText());
+        f.setTelefone(txtTelefone.getText());
+        //falta salvar junto a cidade e estado....
+        d.alterar(f, Fornecedor.class, f.getId());
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -422,9 +458,7 @@ public class TelaAlterarFornecedor extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbEstado;
     private javax.swing.JComboBox<String> cbEstado1;
     private javax.swing.JFormattedTextField ftxtCnpj;
-    private javax.swing.JFormattedTextField ftxtCnpj1;
     private javax.swing.JFormattedTextField ftxtTelefone;
-    private javax.swing.JFormattedTextField ftxtTelefone1;
     private javax.swing.JButton jButton1;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
@@ -445,9 +479,11 @@ public class TelaAlterarFornecedor extends javax.swing.JFrame {
     private javax.swing.JTable tabela;
     private javax.swing.JTextField txtCidade;
     private javax.swing.JTextField txtCidade1;
+    private javax.swing.JFormattedTextField txtCnpj;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtEmail1;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNome1;
+    private javax.swing.JFormattedTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 }

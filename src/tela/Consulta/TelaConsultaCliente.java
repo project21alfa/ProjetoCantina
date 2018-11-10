@@ -6,7 +6,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 public class TelaConsultaCliente extends javax.swing.JInternalFrame {
-    
+    private Cliente cliente;
     private List<Cliente> listCliente = new ArrayList<>();
     
     public TelaConsultaCliente() {
@@ -107,5 +107,9 @@ public class TelaConsultaCliente extends javax.swing.JInternalFrame {
         
         tabela.setModel(modelo);             
     }
+    
+    public Cliente cli(){
 
+        return cliente;
+    }
 }

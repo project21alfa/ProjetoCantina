@@ -5,15 +5,16 @@
  */
 package tela.Consulta;
 
+import entidades.Fornecedor;
+
 /**
  *
  * @author santy
  */
 public class TelaConsultaFornecedor extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form TelaConsultaCliente
-     */
+    private Fornecedor fornecedor;
+    
     public TelaConsultaFornecedor() {
         initComponents();
     }
@@ -85,4 +86,9 @@ public class TelaConsultaFornecedor extends javax.swing.JInternalFrame {
     private javax.swing.JTable tabela;
     private javax.swing.JTextPane txtNome;
     // End of variables declaration//GEN-END:variables
+    public Fornecedor forn(){
+
+        return fornecedor;
+    }
+
 }
