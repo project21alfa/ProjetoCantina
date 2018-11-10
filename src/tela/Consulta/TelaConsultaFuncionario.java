@@ -6,7 +6,10 @@
 package tela.Consulta;
 import dao.DAOFuncionario;
 import entidades.Cliente;
+import entidades.Fornecedor;
 import entidades.Funcionario;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -15,6 +18,16 @@ import javax.swing.table.DefaultTableModel;
 public class TelaConsultaFuncionario extends javax.swing.JInternalFrame {
     DAOFuncionario dao = new DAOFuncionario();
     Funcionario f = new Funcionario();
+    private List<Funcionario> listFuncionario = new ArrayList<>();
+    DefaultTableModel modelo = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+            
+        };
+    
+    
     /**
      * Creates new form TelaConsultaCliente
      */
@@ -89,7 +102,12 @@ public class TelaConsultaFuncionario extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
         f= dao.findByName(txtNome.getText());
-        
+        modelo.addRow(new Object[]{
+                f.getNome(),
+                f.getCpf(),
+                f.getLogin(),
+                f.getSenha()
+            });
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -101,7 +119,7 @@ public class TelaConsultaFuncionario extends javax.swing.JInternalFrame {
     private javax.swing.JTextPane txtNome;
     // End of variables declaration//GEN-END:variables
 
-    private void updateTable(){
+    private void updateTable(Funcionario f){
         
         DefaultTableModel modelo = new DefaultTableModel(){
             @Override
@@ -115,18 +133,16 @@ public class TelaConsultaFuncionario extends javax.swing.JInternalFrame {
         modelo.addColumn("CPF");
         modelo.addColumn("login");
         modelo.addColumn("senha");
-        modelo.addColumn("");
-        modelo.addColumn("CPF");
+            
         
-        for(Cliente c : listCliente){
+        
+        for(Funcionario f : listFuncionario){
             
             modelo.addRow(new Object[]{
-                c.getNome(),
-                c.getCidade().getNome(),
-                c.getCidade().getEstado().getNome(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getCpf()            
+                f.getNome(),
+                f.getCpf(),
+                f.getLogin(),
+                f.getSenha()
             });
             
         }       
