@@ -1,9 +1,8 @@
 package tela;
 
+import dao.DAOCategoria;
 import dao.DAOGenerico;
 import entidades.Categoria;
-import entidades.Cliente;
-import entidades.Fornecedor;
 import entidades.Produto;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +18,15 @@ public class TelaCadastroProduto extends javax.swing.JInternalFrame {
     /**
      * Creates new form teste
      */
+    private List<Categoria> listC = new ArrayList<>();
+    DAOCategoria daoC = new DAOCategoria();
     
     private Produto produto = new Produto();
     private List<Produto> listProd = new ArrayList<>();
     
     public TelaCadastroProduto() {
         initComponents();
+        attCBox();
     }
 
     /**
@@ -308,6 +310,13 @@ public class TelaCadastroProduto extends javax.swing.JInternalFrame {
         precoComp.setText("");
         precoVen.setText("");
         
+    }
+     private void attCBox() {
+        
+        listC = daoC.listarCategoria();
+        for (Categoria cat : listC) {
+            cbCat.addItem(cat.getNome());
+        }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
