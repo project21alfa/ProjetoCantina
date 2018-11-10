@@ -23,4 +23,5 @@ public class DAOFuncionario {
         System.out.println(query.getResultList().size());
         return (Funcionario) query.getResultList().get(0);
     }
+  
 }
