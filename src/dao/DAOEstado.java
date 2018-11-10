@@ -5,6 +5,7 @@
  */
 package dao;
 
+import entidades.Cliente;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,4 +37,6 @@ public class DAOEstado {
         }
 
     }
+
+   
 }

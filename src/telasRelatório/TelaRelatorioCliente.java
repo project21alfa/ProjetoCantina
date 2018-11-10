@@ -42,11 +42,11 @@ public class TelaRelatorioCliente extends javax.swing.JDialog {
 
 		try {
 
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/sistemacantina", "root", "mysql");
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/sistemacantina", "root", "");
 			
 		Statement st = conn.createStatement();
 			
-		ResultSet rs = st.executeQuery("SELECT * FROM Cliente");
+		ResultSet rs = st.executeQuery("SELECT * FROM cliente");
 		
 		JRResultSetDataSource ds = new JRResultSetDataSource(rs);
 		String enderecoProjeto = System.getProperty("user.dir");
