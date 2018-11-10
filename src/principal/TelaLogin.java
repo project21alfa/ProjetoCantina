@@ -5,9 +5,9 @@ import entidades.Funcionario;
 import javax.swing.JOptionPane;
 
 public class TelaLogin extends javax.swing.JDialog {
-    
+
     private Funcionario f;
-    
+
     public TelaLogin(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -90,32 +90,28 @@ public class TelaLogin extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-       if(!txtLogin.getText().trim().isEmpty() && 
-               !String.valueOf(pwSenha.getPassword()).trim().isEmpty()){
-           
-           DAOFuncionario dao = new DAOFuncionario();
-           f = dao.findByLogin(txtLogin.getText());
-           
-           if( f != null){
-               dispose();
-              // if(f.getSenha() == String.valueOf(pwSenha.getText())){
-                   dispose();
-                   
-              // }
-              // else{
-              //     JOptionPane.showMessageDialog(null, "ERRO: Senha incorreta", "ERRO!!!", 
-             //           JOptionPane.ERROR_MESSAGE);
-             //  }
-           }
-           else{
-               JOptionPane.showMessageDialog(null, "ERRO: Login incorreto", "ERRO!!!", 
-                   JOptionPane.ERROR_MESSAGE);
-           }           
-       }
-       else{
-           JOptionPane.showMessageDialog(null, "ERRO: Preencha todos os campos", "ERRO!!!", 
-                   JOptionPane.ERROR_MESSAGE);
-       }
+        if (!txtLogin.getText().trim().isEmpty()
+                && !String.valueOf(pwSenha.getPassword()).trim().isEmpty()) {
+
+            DAOFuncionario dao = new DAOFuncionario();
+            f = dao.findByLogin(txtLogin.getText());
+
+            if (f != null) {
+                if (f.getSenha() == String.valueOf(pwSenha.getText())) {
+                    dispose();
+                } 
+                else {
+                    JOptionPane.showMessageDialog(null, "ERRO: Senha incorreta", "ERRO!!!",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "ERRO: Login incorreto", "ERRO!!!",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "ERRO: Preencha todos os campos", "ERRO!!!",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
@@ -170,7 +166,7 @@ public class TelaLogin extends javax.swing.JDialog {
     private javax.swing.JTextField txtLogin;
     // End of variables declaration//GEN-END:variables
 
-    public Funcionario getFuncionario(){
+    public Funcionario getFuncionario() {
         return f;
     }
 
