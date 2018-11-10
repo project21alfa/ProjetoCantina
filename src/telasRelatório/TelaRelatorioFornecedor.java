@@ -13,7 +13,9 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
 
-public class TelaRelatorioFuncionario extends javax.swing.JDialog {
+public class TelaRelatorioFornecedor extends javax.swing.JDialog {
+
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -33,21 +35,23 @@ public class TelaRelatorioFuncionario extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-      public TelaRelatorioFuncionario(){
-		super(new JFrame(), "Relatório Funcionario", true);
+    public TelaRelatorioFornecedor() {
+
+		super(new JFrame(), "Relatório Fornecedor", true);
                 setSize(1024, 768);
+
 		try {
 
 		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/sistemacantina", "root", "");
 			
 		Statement st = conn.createStatement();
 			
-		ResultSet rs = st.executeQuery("SELECT * FROM funcionario");
+		ResultSet rs = st.executeQuery("SELECT * FROM fornecedor");
 		
 		JRResultSetDataSource ds = new JRResultSetDataSource(rs);
 		String enderecoProjeto = System.getProperty("user.dir");
 			
-		JasperReport jr = JasperCompileManager.compileReport(enderecoProjeto+"/Relatórios/relatorioFuncionario.jrxml");
+		JasperReport jr = JasperCompileManager.compileReport(enderecoProjeto+"/Relatórios/relatorioFornecedor.jrxml");
 
 		JasperPrint jp = JasperFillManager.fillReport(jr, null,ds);
 		JasperViewer jv = new JasperViewer(jp);
@@ -57,8 +61,10 @@ public class TelaRelatorioFuncionario extends javax.swing.JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+        }	
+  
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-}
+
