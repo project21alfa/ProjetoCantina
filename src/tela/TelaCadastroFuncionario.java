@@ -6,6 +6,7 @@ import dao.DAOGenerico;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 
@@ -152,6 +153,8 @@ public class TelaCadastroFuncionario extends javax.swing.JInternalFrame {
             f.setCpf(txtCpf.getText());
             DAOGenerico dd = new DAOGenerico();
             dd.salvar(f);
+            JOptionPane.showMessageDialog(null,"item salvo");
+            limparCampos();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

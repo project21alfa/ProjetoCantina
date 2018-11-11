@@ -150,6 +150,7 @@ public class TelaConsultaProduto extends javax.swing.JInternalFrame {
         modelo.addColumn("Preço Compra");
         modelo.addColumn("Preço Venda");
         listProd = dao.listarPrduto();
+        
         for(Produto p : listProd){
             
             modelo.addRow(new Object[]{
