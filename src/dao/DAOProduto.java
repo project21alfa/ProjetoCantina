@@ -1,6 +1,7 @@
 package dao;
 
 import entidades.Categoria;
+import entidades.Cliente;
 import entidades.Produto;
 import fabrica.Fabrica;
 import java.util.ArrayList;
@@ -13,7 +14,20 @@ import javax.persistence.Query;
 public class DAOProduto {
     private EntityManager em;
     private EntityTransaction t;
-    
+    public List<Produto> listarPrduto() {
+        List<Produto> lista = new ArrayList<Produto>();
+        em = Fabrica.getFabrica().createEntityManager();
+        try {
+            lista = em.createQuery("from Produto").getResultList();
+            return lista;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            em.close();
+        }
+
+    }
     public List<Produto> listByNameSearch(String nome){
         em = Fabrica.getFabrica().createEntityManager();
         List<Produto> listProduto = new ArrayList<>();

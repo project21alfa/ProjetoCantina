@@ -15,6 +15,7 @@ public class TelaConsultaFornecedor extends javax.swing.JInternalFrame {
     
     public TelaConsultaFornecedor() {
         initComponents();
+        attBox();
     }
 
     @SuppressWarnings("unchecked")
@@ -137,7 +138,41 @@ public class TelaConsultaFornecedor extends javax.swing.JInternalFrame {
     private javax.swing.JTable tabela;
     private javax.swing.JTextPane txtNome;
     // End of variables declaration//GEN-END:variables
-    
+    private void attBox(){
+        DefaultTableModel modelo = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+            
+        };
+     
+        modelo.addColumn("Nome");
+       // modelo.addColumn("Cidade");
+       // modelo.addColumn("Estado");
+        modelo.addColumn("Email");
+        modelo.addColumn("Telefone");
+        modelo.addColumn("CNPJ");
+        
+         listFornecedor = dao.listarFornecedor();
+         
+        for(Fornecedor f : listFornecedor){
+            
+            modelo.addRow(new Object[]{
+                f.getNome(),
+            //    f.getCidade().getNome(),
+            //    f.getCidade().getEstado().getNome(),
+                f.getEmail(),
+                f.getTelefone(),
+                f.getCnpj()
+            
+            });
+            
+        }       
+        
+        tabela.setModel(modelo);      
+      
+    }
     private void updateTable(){
         DefaultTableModel modelo = new DefaultTableModel(){
             @Override
@@ -154,6 +189,8 @@ public class TelaConsultaFornecedor extends javax.swing.JInternalFrame {
         modelo.addColumn("Telefone");
         modelo.addColumn("CNPJ");
         
+       
+         
         for(Fornecedor f : listFornecedor){
             
             modelo.addRow(new Object[]{

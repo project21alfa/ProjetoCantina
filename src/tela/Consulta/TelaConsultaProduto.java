@@ -15,6 +15,7 @@ public class TelaConsultaProduto extends javax.swing.JInternalFrame {
     
     public TelaConsultaProduto() {
         initComponents();
+        attBox();
     }
 
     @SuppressWarnings("unchecked")
@@ -134,7 +135,34 @@ public class TelaConsultaProduto extends javax.swing.JInternalFrame {
     private javax.swing.JTable tabela;
     private javax.swing.JTextPane txtNome;
     // End of variables declaration//GEN-END:variables
-    
+    private void attBox(){
+        DefaultTableModel modelo = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+            
+        };
+     
+        modelo.addColumn("Nome");
+        modelo.addColumn("Qtde Estoque");
+        modelo.addColumn("Categoria");
+        modelo.addColumn("Preço Compra");
+        modelo.addColumn("Preço Venda");
+        listProd = dao.listarPrduto();
+        for(Produto p : listProd){
+            
+            modelo.addRow(new Object[]{
+                p.getNome(),
+                p.getQuantEstoque(),
+                p.getCategoria().getNome(),
+                p.getPrecoCompra(),
+                p.getPrecoVenda()
+            
+            });
+            tabela.setModel(modelo);
+        }
+    }
     private void updateTable(){
         DefaultTableModel modelo = new DefaultTableModel(){
             @Override

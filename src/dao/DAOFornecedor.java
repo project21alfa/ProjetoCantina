@@ -1,5 +1,6 @@
 package dao;
 
+import entidades.Cliente;
 import entidades.Fornecedor;
 import fabrica.Fabrica;
 import java.util.ArrayList;
@@ -67,5 +68,19 @@ public class DAOFornecedor {
         finally{
             em.close();
         }
+    }
+    public List<Fornecedor> listarFornecedor() {
+        List<Fornecedor> lista = new ArrayList<Fornecedor>();
+        em = Fabrica.getFabrica().createEntityManager();
+        try {
+            lista = em.createQuery("from Fornecedor").getResultList();
+            return lista;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            em.close();
+        }
+
     }
 }

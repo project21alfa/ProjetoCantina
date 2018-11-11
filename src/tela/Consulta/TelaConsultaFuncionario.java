@@ -16,6 +16,7 @@ public class TelaConsultaFuncionario extends javax.swing.JInternalFrame {
 
     public TelaConsultaFuncionario() {
         initComponents();
+        attBox();
     }
 
     @SuppressWarnings("unchecked")
@@ -158,7 +159,32 @@ public class TelaConsultaFuncionario extends javax.swing.JInternalFrame {
     private javax.swing.JTable tabela;
     private javax.swing.JTextPane txtNome;
     // End of variables declaration//GEN-END:variables
+    private void attBox() {
 
+        DefaultTableModel modelo = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+
+        };
+
+        modelo.addColumn("Nome");
+        modelo.addColumn("CPF");
+         listFuncionario = dao.listarFuncionario();
+        for (Funcionario f : listFuncionario) {
+
+            modelo.addRow(new Object[]{
+                f.getNome(),
+                f.getCpf()
+            });
+
+        }
+
+        tabela.setModel(modelo);
+
+    }
+    
     private void updateTable() {
 
         DefaultTableModel modelo = new DefaultTableModel() {

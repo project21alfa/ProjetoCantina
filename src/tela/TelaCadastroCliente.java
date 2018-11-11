@@ -249,7 +249,7 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        TelaEscolhaCidade telaEC = new TelaEscolhaCidade(null, true, estado);
+        TelaEscolhaCidade telaEC = new TelaEscolhaCidade(null, true, estado,estado.getId());
         cidade = telaEC.getCidade();
         telaEC.show();
     }//GEN-LAST:event_btnPesquisarActionPerformed
