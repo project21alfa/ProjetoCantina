@@ -12,12 +12,12 @@ public class TelaEscolhaCidade extends javax.swing.JDialog {
     private Cidade cidade = new Cidade();
     private List<Cidade> listCidadade = new ArrayList<>();
 
-    public TelaEscolhaCidade(java.awt.Frame parent, boolean modal, Estado est) {
+    public TelaEscolhaCidade(java.awt.Frame parent, boolean modal, Estado est,long id) {
         super(parent, modal);
         initComponents();
         
         DAOCidade daoC = new DAOCidade();
-        listCidadade = daoC.buscarCidade(est);
+        listCidadade = daoC.listarCidade(id);
         
         updateTable();
         

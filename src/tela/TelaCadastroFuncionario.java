@@ -176,6 +176,7 @@ public class TelaCadastroFuncionario extends javax.swing.JInternalFrame {
         txtNome.setText("");
         pwConfirma.setText("");
         pwSenha.setText("");
+        txtCpf.setText("");
     }
 
     private String getSenha(JPasswordField jp) {

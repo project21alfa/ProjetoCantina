@@ -8,7 +8,7 @@ import entidades.Estado;
 public class Principal {
 
     public static void main(String[] args) {
-        
+        System.out.println("s");
        TelaPrincipal telaP = new TelaPrincipal();
        telaP.setVisible(true);
        

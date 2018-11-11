@@ -1,6 +1,7 @@
 package dao;
 
 import entidades.Cliente;
+import entidades.Estado;
 import fabrica.Fabrica;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +18,7 @@ public class DAOCliente {
         em = Fabrica.getFabrica().createEntityManager();
         List<Cliente> listClientes = new ArrayList<>();
         
-        Query query = em.createQuery("from Cliente as Cliente where Cliente.nome like 'param%'");
-        query.setParameter("param", nome);
-        
+        Query query = em.createQuery("from Cliente as Cliente where Cliente.nome like '"+nome+"'");
         listClientes = query.getResultList();
         
         em.close();
@@ -27,7 +26,20 @@ public class DAOCliente {
         return listClientes;
         
     }
-    
+    public List<Cliente> listarCliente() {
+        List<Cliente> lista = new ArrayList<Cliente>();
+        em = Fabrica.getFabrica().createEntityManager();
+        try {
+            lista = em.createQuery("from Cliente").getResultList();
+            return lista;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            em.close();
+        }
+
+    }
     public boolean excluir(long id){
         em = Fabrica.getFabrica().createEntityManager();
         t = em.getTransaction();

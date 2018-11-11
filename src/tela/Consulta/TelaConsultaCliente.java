@@ -2,6 +2,7 @@ package tela.Consulta;
 
 import dao.DAOCliente;
 import entidades.Cliente;
+import entidades.Estado;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -15,6 +16,7 @@ public class TelaConsultaCliente extends javax.swing.JInternalFrame {
 
     public TelaConsultaCliente() {
         initComponents();
+        attCBox();
     }
 
     @SuppressWarnings("unchecked")
@@ -50,13 +52,13 @@ public class TelaConsultaCliente extends javax.swing.JInternalFrame {
 
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "nome", "Title 2", "Title 3", "Title 4", "null", "Título 6"
             }
         ));
         jScrollPane1.setViewportView(tabela);
@@ -74,13 +76,13 @@ public class TelaConsultaCliente extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
                 .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(53, Short.MAX_VALUE))
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,7 +103,7 @@ public class TelaConsultaCliente extends javax.swing.JInternalFrame {
         
         TelaAlterarCliente telaAC = new TelaAlterarCliente(null, true, c);
         telaAC.setVisible(true);
-        updateTable();
+        attCBox();
     }//GEN-LAST:event_miAlterarActionPerformed
 
     private void miExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miExcluirActionPerformed
@@ -114,13 +116,13 @@ public class TelaConsultaCliente extends javax.swing.JInternalFrame {
                 Cliente c = listCliente.get(tabela.getSelectedRow());
                 dao.excluir(c.getId());
             }
-            updateTable();
+           attCBox();
         }
     }//GEN-LAST:event_miExcluirActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        listCliente = dao.listByNameSearch(txtNome.getText().trim());
-        updateTable();
+ 
+        updateTable(txtNome.getText());
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
 
@@ -134,8 +136,38 @@ public class TelaConsultaCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTable tabela;
     private javax.swing.JTextPane txtNome;
     // End of variables declaration//GEN-END:variables
+    private void attCBox() {
+          DefaultTableModel modelo = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
 
-    private void updateTable() {
+        };
+
+        modelo.addColumn("Nome");
+        //modelo.addColumn("Cidade");
+        //modelo.addColumn("Estado");
+        modelo.addColumn("Email");
+        modelo.addColumn("Telefone");
+        modelo.addColumn("CPF");
+        
+        listCliente = dao.listarCliente();
+        
+        for (Cliente c : listCliente) {
+               modelo.addRow(new Object[]{
+                c.getNome(),
+              //  c.getCidade().getNome(),
+              //  c.getCidade().getEstado().getNome(),
+                c.getEmail(),
+                c.getTelefone(),
+                c.getCpf()
+            });
+           tabela.setModel(modelo);
+                
+        }
+    }
+    private void updateTable(String nome) {
 
         DefaultTableModel modelo = new DefaultTableModel() {
             @Override
@@ -151,7 +183,9 @@ public class TelaConsultaCliente extends javax.swing.JInternalFrame {
         modelo.addColumn("Email");
         modelo.addColumn("Telefone");
         modelo.addColumn("CPF");
-
+        
+        listCliente = dao.listByNameSearch(nome);
+        
         for (Cliente c : listCliente) {
 
             modelo.addRow(new Object[]{

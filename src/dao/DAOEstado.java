@@ -5,6 +5,7 @@
  */
 package dao;
 
+import entidades.Categoria;
 import entidades.Cliente;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ import javax.persistence.EntityManager;
 import fabrica.Fabrica;
 
 import entidades.Estado;
+import javax.persistence.Query;
 
 /**
  *
@@ -37,6 +39,13 @@ public class DAOEstado {
         }
 
     }
+     public Estado findByNomeE(String nome) {
+		  em = Fabrica.getFabrica().createEntityManager();
+	        Query query = em.createQuery("from Estado as estado where estado.nome = :param");
+	        query.setParameter("param", nome);
+	        System.out.println(query.getResultList().size());
+	       return (Estado) query.getResultList().get(0);
+	    }
 
    
 }
