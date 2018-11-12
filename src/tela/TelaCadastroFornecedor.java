@@ -24,8 +24,7 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
     DAOEstado daoE = new DAOEstado();
     DAOGenerico<Fornecedor> daoP = new DAOGenerico<Fornecedor>();
     Fornecedor fornecedor = new Fornecedor();
-    
-    
+
     public TelaCadastroFornecedor() {
         initComponents();
         updateTable();
@@ -245,22 +244,21 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-        if(!txtCidade.getText().trim().isEmpty() && 
-                !getTelefone().isEmpty() && 
-                !txtEmail.getText().trim().isEmpty() &&
-                !txtNome.getText().trim().isEmpty() && 
-                !getCnpj().isEmpty() &&
-                cbEstado.getSelectedIndex() != 1){
-            
+        if (!txtCidade.getText().trim().isEmpty()
+                && !getTelefone().isEmpty()
+                && !txtEmail.getText().trim().isEmpty()
+                && !txtNome.getText().trim().isEmpty()
+                && !getCnpj().isEmpty()
+                && cbEstado.getSelectedIndex() != 1) {
+
             Fornecedor fornecedor = new Fornecedor();
-                      
+
             fornecedor.setNome(txtNome.getText().trim().toUpperCase());
             fornecedor.setEmail(txtEmail.getText().trim().toUpperCase());
             fornecedor.setCnpj(getCnpj());
             fornecedor.setTelefone(getTelefone());
             fornecedor.setCidade(cidade);
-            
-            
+
             listFornecedor.add(fornecedor);
             limparCampos();
             updateTable();
@@ -273,50 +271,54 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
 
     private void btnCadastrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarTodosActionPerformed
         DAOGenerico daoG = new DAOGenerico();
-        
-        for(Fornecedor f : listFornecedor){
-            
+
+        for (Fornecedor f : listFornecedor) {
+
             daoG.salvar(f);
-            
+
         }
-        
+
         listFornecedor = new ArrayList<>();
         updateTable();
         limparCampos();
-        
+
     }//GEN-LAST:event_btnCadastrarTodosActionPerformed
 
     private void deletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletarActionPerformed
-        int confirm = JOptionPane.showConfirmDialog(null, "Realmente deseja excluir?", "Atenção", 
+        int confirm = JOptionPane.showConfirmDialog(null, "Realmente deseja excluir?", "Atenção",
                 JOptionPane.YES_NO_OPTION);
-        
-        if(confirm == JOptionPane.YES_OPTION) listFornecedor.remove(tabela.getSelectedRow());
-        
+
+        if (confirm == JOptionPane.YES_OPTION) {
+            listFornecedor.remove(tabela.getSelectedRow());
+        }
+
         updateTable();
-                
+
     }//GEN-LAST:event_deletarActionPerformed
 
     private void tabelaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseReleased
-        if(evt.getButton() == evt.BUTTON3 && tabela.getSelectedRow() != -1){
-            
+        if (evt.getButton() == evt.BUTTON3 && tabela.getSelectedRow() != -1) {
+
             popupMenu.show(tabela, evt.getX(), evt.getY());
-            
+
         }
     }//GEN-LAST:event_tabelaMouseReleased
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        estado = listE.get(cbEstado.getSelectedIndex());
-        TelaEscolhaCidade telaEC = new TelaEscolhaCidade(null, true, estado);
-        telaEC.setVisible(true);
-        cidade = telaEC.getCidade(); 
-        txtCidade.setText(cidade.getNome());
+        if (cbEstado.getSelectedIndex() != -1) {
+            estado = listE.get(cbEstado.getSelectedIndex());
+            TelaEscolhaCidade telaEC = new TelaEscolhaCidade(null, true, estado);
+            telaEC.setVisible(true);
+            cidade = telaEC.getCidade();
+            txtCidade.setText(cidade.getNome());
+        }
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
         TelaAlterarFornecedor telaAF = new TelaAlterarFornecedor(null, true, listFornecedor.get(tabela.getSelectedRow()));
         telaAF.setVisible(true);
         listFornecedor.set(tabela.getSelectedRow(), telaAF.getFornecedor());
-        updateTable();       
+        updateTable();
     }//GEN-LAST:event_editarActionPerformed
 
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
@@ -348,39 +350,40 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
-  
-     private void attCBox() {
-        
+
+    private void attCBox() {
+
         listE = daoE.listarEstado();
         for (Estado est : listE) {
             cbEstado.addItem(est.getNome());
         }
     }
-     private void pesquisar(){
-         DefaultTableModel val = (DefaultTableModel) tabela.getModel();
-         fornecedor = daoP.findByNomeF(txtNome.getText());
-				
-         val.addRow(new String[]{fornecedor.getNome(),fornecedor.getEmail(),fornecedor.getCnpj()});
-     }
-     
-    private void updateTable(){
-        DefaultTableModel modelo = new DefaultTableModel(){
+
+    private void pesquisar() {
+        DefaultTableModel val = (DefaultTableModel) tabela.getModel();
+        fornecedor = daoP.findByNomeF(txtNome.getText());
+
+        val.addRow(new String[]{fornecedor.getNome(), fornecedor.getEmail(), fornecedor.getCnpj()});
+    }
+
+    private void updateTable() {
+        DefaultTableModel modelo = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
-            
+
         };
-     
+
         modelo.addColumn("Nome");
         modelo.addColumn("Cidade");
         modelo.addColumn("Estado");
         modelo.addColumn("Email");
         modelo.addColumn("Telefone");
         modelo.addColumn("CNPJ");
-        
-        for(Fornecedor f : listFornecedor){
-            
+
+        for (Fornecedor f : listFornecedor) {
+
             modelo.addRow(new Object[]{
                 f.getNome(),
                 f.getCidade().getNome(),
@@ -388,16 +391,16 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
                 f.getEmail(),
                 f.getTelefone(),
                 f.getCnpj()
-            
+
             });
-            
-        }       
-        
-        tabela.setModel(modelo);      
-      
+
+        }
+
+        tabela.setModel(modelo);
+
     }
-  
-    private void limparCampos(){
+
+    private void limparCampos() {
         txtCidade.setText("");
         ftxtCnpj.setText("");
         txtEmail.setText("");
@@ -405,42 +408,39 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
         ftxtTelefone.setText("");
         cbEstado.setSelectedIndex(0);
     }
-    
-    private void setMask(){
-        
-        try{
-            ftxtTelefone.setFormatterFactory(new DefaultFormatterFactory (
+
+    private void setMask() {
+
+        try {
+            ftxtTelefone.setFormatterFactory(new DefaultFormatterFactory(
                     new MaskFormatter("(##) #####-####")));
-            ftxtCnpj.setFormatterFactory(new DefaultFormatterFactory (
+            ftxtCnpj.setFormatterFactory(new DefaultFormatterFactory(
                     new MaskFormatter("##.###.###/####-##")));
-        }
-        catch(ParseException pe){
+        } catch (ParseException pe) {
             pe.printStackTrace();
         }
-        
+
     }
-    
-    private String getTelefone(){
-        
+
+    private String getTelefone() {
+
         String telefone = ftxtTelefone.getText().replace("(", "");
         telefone = telefone.replace(")", "");
         telefone = telefone.replace(" ", "");
         telefone = telefone.replace("-", "");
-        
+
         return telefone;
-        
+
     }
 
-    private String getCnpj(){
-        
+    private String getCnpj() {
+
         String cnpj = ftxtCnpj.getText().replace(".", "");
         cnpj = cnpj.replace("/", "");
         cnpj = cnpj.replace("-", "");
-        
+
         return cnpj;
-        
+
     }
-    
-    
-    
+
 }

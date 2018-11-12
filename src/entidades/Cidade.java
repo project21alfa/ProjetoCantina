@@ -22,7 +22,7 @@ public class Cidade {
         @OneToOne
 	private Estado sigla;
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
