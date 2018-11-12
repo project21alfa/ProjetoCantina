@@ -8,16 +8,17 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 public class TelaEscolhaCidade extends javax.swing.JDialog {
-    
+    private Estado estado;
     private Cidade cidade = new Cidade();
     private List<Cidade> listCidadade = new ArrayList<>();
 
-    public TelaEscolhaCidade(java.awt.Frame parent, boolean modal, Estado est,long id) {
+    public TelaEscolhaCidade(java.awt.Frame parent, boolean modal, Estado est) {
         super(parent, modal);
         initComponents();
         
+        estado = est;        
         DAOCidade daoC = new DAOCidade();
-        listCidadade = daoC.listarCidade(id);
+        listCidadade = daoC.listarCidade(est.getId());
         
         updateTable();
         

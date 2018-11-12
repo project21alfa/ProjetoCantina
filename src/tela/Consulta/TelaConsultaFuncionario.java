@@ -32,7 +32,7 @@ public class TelaConsultaFuncionario extends javax.swing.JInternalFrame {
         txtNome = new javax.swing.JTextPane();
         btnPesquisar = new javax.swing.JButton();
 
-        miAlterar.setText("jMenuItem1");
+        miAlterar.setText("alterar");
         miAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 miAlterarActionPerformed(evt);

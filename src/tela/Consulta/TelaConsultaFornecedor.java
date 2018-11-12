@@ -60,6 +60,11 @@ public class TelaConsultaFornecedor extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tabelaMouseReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabela);
 
         jScrollPane2.setViewportView(txtNome);
@@ -126,6 +131,13 @@ public class TelaConsultaFornecedor extends javax.swing.JInternalFrame {
             updateTable();
         }
     }//GEN-LAST:event_miExcluirActionPerformed
+
+    private void tabelaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseReleased
+        if(evt.getButton() == evt.BUTTON3 && tabela.getSelectedRow() != -1){
+            
+             popupMenu.show(tabela, evt.getX(), evt.getY());
+        }
+    }//GEN-LAST:event_tabelaMouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
