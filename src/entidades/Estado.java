@@ -20,7 +20,7 @@ public class Estado {
 	@OneToMany(mappedBy = "estado")
 	private List<Cidade> cidade= new ArrayList<>();
 	
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 

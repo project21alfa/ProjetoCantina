@@ -15,7 +15,7 @@ import javax.persistence.OneToOne;
 public class Cidade {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private int id;
 	private String nome;
 	@ManyToOne
 	private Estado estado;

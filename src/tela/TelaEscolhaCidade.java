@@ -18,7 +18,7 @@ public class TelaEscolhaCidade extends javax.swing.JDialog {
         
         estado = est;        
         DAOCidade daoC = new DAOCidade();
-        listCidade = daoC.listarCidade(est.getId());
+        listCidade = daoC.listByEstado(est.getId());
         
         updateTable();
         

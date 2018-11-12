@@ -3,7 +3,12 @@ package dao;
 import entidades.Cidade;
 import entidades.Estado;
 import entidades.Funcionario;
+import fabrica.ConectorMYSQL;
 import fabrica.Fabrica;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -76,6 +81,32 @@ public class DAOCidade {
 	        query.setParameter("param", nome);
 	        System.out.println(query.getResultList().size());
 	       return (Cidade) query.getResultList().get(0);
-	    }   
+     }
+     
+     public List<Cidade> listByEstado(int id){         
+         List<Cidade> listCidade = new ArrayList<>();
+         
+         try(Connection conexao = ConectorMYSQL.getConnection()){
+             String sql = "select * from Cidade where Cidade.estado = " + id;
+             
+             PreparedStatement prep = conexao.prepareStatement(sql);
+             ResultSet result = prep.executeQuery();
+             
+             while(result.next()){
+                 Cidade c = new Cidade();
+                 c.setId(result.getInt("id"));
+                 c.setNome(result.getString("nome"));
+                 
+                 listCidade.add(c);
+             }
+             
+         }
+         catch(SQLException se){
+             se.printStackTrace();
+         }
+         return listCidade;
+         
+         
+     }
     
 }
