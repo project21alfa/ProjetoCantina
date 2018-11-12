@@ -15,7 +15,7 @@ public class DAOCidade {
     EntityManager em;    
     private EntityTransaction t;
     	
-    public List<Cidade> listarCidade(long id) {
+    public List<Cidade> listarCidade(int id) {
 		List<Cidade> lista = new ArrayList<Cidade>();
 		EntityManager em = Fabrica.getFabrica().createEntityManager();
 		EntityTransaction t = em.getTransaction();
@@ -76,22 +76,6 @@ public class DAOCidade {
 	        query.setParameter("param", nome);
 	        System.out.println(query.getResultList().size());
 	       return (Cidade) query.getResultList().get(0);
-	    }
-
-  
-    public List<Cidade> listarCidade(int id){
-		  	List<Cidade> lista = new ArrayList<Cidade>();
-			em = Fabrica.getFabrica().createEntityManager();
-			try{
-				lista = em.createQuery("from Cidade where estado = "+id).getResultList();
-				return lista;
-			}catch(Exception e){
-				e.printStackTrace();
-				return null;
-			}finally{
-				em.close();
-			}
-			
-		}
+	    }   
     
 }

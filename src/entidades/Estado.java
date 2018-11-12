@@ -14,7 +14,7 @@ public class Estado {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 
-	private long id;
+	private int id;
 	private String nome;
 	private String sigla;
 	@OneToMany(mappedBy = "estado")
