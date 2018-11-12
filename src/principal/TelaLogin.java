@@ -97,7 +97,8 @@ public class TelaLogin extends javax.swing.JDialog {
             f = dao.findByLogin(txtLogin.getText());
 
             if (f != null) {
-                if (f.getSenha() == String.valueOf(pwSenha.getText())) {
+                
+                if (f.getSenha().equals(String.valueOf(pwSenha.getPassword()))) {
                     dispose();
                 } 
                 else {

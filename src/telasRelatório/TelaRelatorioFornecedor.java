@@ -42,11 +42,11 @@ public class TelaRelatorioFornecedor extends javax.swing.JDialog {
 
 		try {
 
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/sistemacantina", "root", "");
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/sistemacantina", "root", "mysql");
 			
 		Statement st = conn.createStatement();
 			
-		ResultSet rs = st.executeQuery("SELECT * FROM fornecedor");
+		ResultSet rs = st.executeQuery("SELECT * FROM Fornecedor");
 		
 		JRResultSetDataSource ds = new JRResultSetDataSource(rs);
 		String enderecoProjeto = System.getProperty("user.dir");
