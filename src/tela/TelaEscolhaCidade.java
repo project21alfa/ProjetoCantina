@@ -119,12 +119,8 @@ public class TelaEscolhaCidade extends javax.swing.JDialog {
         if(evt.getClickCount() == 2 && tabela.getSelectedRow() != -1){
             
             cidade = listCidade.get(tabela.getSelectedRow());
-            
-        }
-        
-        dispose();
-        
-        
+            dispose();
+        }       
     }//GEN-LAST:event_tabelaMousePressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -202,6 +198,7 @@ public class TelaEscolhaCidade extends javax.swing.JDialog {
             });
             
         }
+        tabela.setModel(modelo);
         
     }
     

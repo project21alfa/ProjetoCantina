@@ -104,7 +104,7 @@ public class TelaConsultaProduto extends javax.swing.JInternalFrame {
 
     private void btnProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutoActionPerformed
         listProd = dao.listByNameSearch(txtNome.getText().trim());
-        updateTable();
+        attBox();
     }//GEN-LAST:event_btnProdutoActionPerformed
 
     private void miAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAlterarActionPerformed
@@ -125,7 +125,7 @@ public class TelaConsultaProduto extends javax.swing.JInternalFrame {
                 Produto p = listProd.get(tabela.getSelectedRow());
                 dao.excluir(p.getId());
             }
-            updateTable();
+            attBox();
         }
     }//GEN-LAST:event_miExcluirActionPerformed
 

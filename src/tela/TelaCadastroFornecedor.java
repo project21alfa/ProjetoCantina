@@ -309,7 +309,7 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
         TelaEscolhaCidade telaEC = new TelaEscolhaCidade(null, true, estado);
         telaEC.setVisible(true);
         cidade = telaEC.getCidade(); 
-        
+        txtCidade.setText(cidade.getNome());
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed

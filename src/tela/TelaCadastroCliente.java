@@ -252,7 +252,8 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
         estado = listE.get(cbEstado.getSelectedIndex());
         TelaEscolhaCidade telaEC = new TelaEscolhaCidade(null, true, estado);
         telaEC.setVisible(true);
-        cidade = telaEC.getCidade();  
+        cidade = telaEC.getCidade();
+        txtCidade.setText(cidade.getNome());
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void tabelaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseReleased

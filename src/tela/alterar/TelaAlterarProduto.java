@@ -1,15 +1,26 @@
 package tela.alterar;
 
+import dao.DAOCategoria;
 import dao.DAOGenerico;
+import dao.DAOProduto;
+import entidades.Categoria;
 import entidades.Produto;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TelaAlterarProduto extends javax.swing.JDialog {
     
     private Produto p;
+    private List<Categoria> listC = new ArrayList<>();
+    DAOCategoria daoC = new DAOCategoria();
+    
+    private Produto produto = new Produto();
+    private List<Produto> listProd = new ArrayList<>();
     
     public TelaAlterarProduto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
     }
     
     public TelaAlterarProduto(java.awt.Frame parent, boolean modal, Produto p) {
@@ -20,6 +31,9 @@ public class TelaAlterarProduto extends javax.swing.JDialog {
         txtprecoComp.setText(""+p.getPrecoCompra());
         txtprecoVen.setText(""+p.getPrecoVenda());
         txtqtdeEst.setText(""+p.getQuantEstoque());
+        DAOProduto daop = new DAOProduto();
+        daop.alterar(p);
+        attCBox();
     }
 
     @SuppressWarnings("unchecked")
@@ -236,4 +250,11 @@ public class TelaAlterarProduto extends javax.swing.JDialog {
     private javax.swing.JTextField txtprecoVen;
     private javax.swing.JTextField txtqtdeEst;
     // End of variables declaration//GEN-END:variables
+private void attCBox() {
+        
+        listC = daoC.listarCategoria();
+        for (Categoria cat : listC) {
+            cbCat.addItem(cat.getNome());
+        }
+    }
 }
