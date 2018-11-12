@@ -178,13 +178,13 @@ public class TelaAlterarProduto extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         DAOGenerico d = new DAOGenerico();
-        p.setNome(txtnome.getText());
-        p.setQuantEstoque(Integer.parseInt(txtqtdeEst.getText()));
-        p.setPrecoCompra(Integer.parseInt(txtprecoComp.getText()));
-        p.setPrecoVenda(Integer.parseInt(txtprecoVen.getText()));
+        Produto pp = new Produto();
+        pp.setNome(txtnome.getText());
+        pp.setQuantEstoque(Integer.parseInt(txtqtdeEst.getText()));
+        pp.setPrecoCompra(Integer.parseInt(txtprecoComp.getText()));
+        pp.setPrecoVenda(Integer.parseInt(txtprecoVen.getText()));
         //falta a categoria
-
-        d.alterar(p,Produto.class,p.getId());
+        d.alterar(pp,Produto.class,p.getId());
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
