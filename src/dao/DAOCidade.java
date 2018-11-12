@@ -87,7 +87,7 @@ public class DAOCidade {
          List<Cidade> listCidade = new ArrayList<>();
          
          try(Connection conexao = ConectorMYSQL.getConnection()){
-             String sql = "select * from Cidade where Cidade.estado = " + id;
+             String sql = "select * from Cidade where Cidade.estado = " + id + " order by Cidade.nome";
              
              PreparedStatement prep = conexao.prepareStatement(sql);
              ResultSet result = prep.executeQuery();
@@ -108,5 +108,34 @@ public class DAOCidade {
          
          
      }
+     
+     public List<Cidade> listByEstado(int id, String nome){         
+         List<Cidade> listCidade = new ArrayList<>();
+         
+         try(Connection conexao = ConectorMYSQL.getConnection()){
+             String sql = "select * from Cidade where Cidade.estado = " + id + " and Cidade.nome like ?% order by Cidade.nome";
+             
+             PreparedStatement prep = conexao.prepareStatement(sql);
+             prep.setString(1, nome);
+             ResultSet result = prep.executeQuery();
+             
+             while(result.next()){
+                 Cidade c = new Cidade();
+                 c.setId(result.getInt("id"));
+                 c.setNome(result.getString("nome"));
+                 
+                 listCidade.add(c);
+             }
+             
+         }
+         catch(SQLException se){
+             se.printStackTrace();
+         }
+         return listCidade;
+         
+         
+     }
+     
+     
     
 }

@@ -11,13 +11,14 @@ public class TelaEscolhaCidade extends javax.swing.JDialog {
     private Estado estado;
     private Cidade cidade = new Cidade();
     private List<Cidade> listCidade = new ArrayList<>();
+    DAOCidade daoC = new DAOCidade();
 
     public TelaEscolhaCidade(java.awt.Frame parent, boolean modal, Estado est) {
         super(parent, modal);
         initComponents();
         
         estado = est;        
-        DAOCidade daoC = new DAOCidade();
+        
         listCidade = daoC.listByEstado(est.getId());
         
         updateTable();
@@ -35,7 +36,7 @@ public class TelaEscolhaCidade extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         txtNome = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnPesquisar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
@@ -44,10 +45,10 @@ public class TelaEscolhaCidade extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Tabela CIdades");
 
-        jButton1.setText("Pesquisar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnPesquisar.setText("Pesquisar");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnPesquisarActionPerformed(evt);
             }
         });
 
@@ -81,7 +82,7 @@ public class TelaEscolhaCidade extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNome)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btnPesquisar)
                 .addGap(23, 23, 23))
             .addComponent(jSeparator1)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
@@ -92,7 +93,7 @@ public class TelaEscolhaCidade extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
+                    .addComponent(btnPesquisar)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -123,10 +124,12 @@ public class TelaEscolhaCidade extends javax.swing.JDialog {
         }       
     }//GEN-LAST:event_tabelaMousePressed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        if(!txtNome.getText().trim().isEmpty()){
+            listCidade = daoC.listByEstado(estado.getId(), txtNome.getText().trim());        
+            updateTable();
+        }
+    }//GEN-LAST:event_btnPesquisarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -168,7 +171,7 @@ public class TelaEscolhaCidade extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnPesquisar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

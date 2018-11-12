@@ -15,14 +15,14 @@ import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 
 public class TelaCadastroCliente extends javax.swing.JInternalFrame {
-    
+
     private Cliente cliente = new Cliente();
     private Cidade cidade = new Cidade();
     private Estado estado = new Estado();
     private List<Cliente> listCliente = new ArrayList<>();
     private List<Estado> listE = new ArrayList<>();
     DAOEstado daoE = new DAOEstado();
-    
+
     public TelaCadastroCliente() {
         initComponents();
         attCBox();
@@ -249,15 +249,17 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        estado = listE.get(cbEstado.getSelectedIndex());
-        TelaEscolhaCidade telaEC = new TelaEscolhaCidade(null, true, estado);
-        telaEC.setVisible(true);
-        cidade = telaEC.getCidade();
-        txtCidade.setText(cidade.getNome());
+        if (cbEstado.getSelectedIndex() != -1) {
+            estado = listE.get(cbEstado.getSelectedIndex());
+            TelaEscolhaCidade telaEC = new TelaEscolhaCidade(null, true, estado);
+            telaEC.setVisible(true);
+            cidade = telaEC.getCidade();
+            txtCidade.setText(cidade.getNome());
+        }
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void tabelaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseReleased
-        if(evt.getButton() == evt.BUTTON3 && tabela.getSelectedRow() != -1){
+        if (evt.getButton() == evt.BUTTON3 && tabela.getSelectedRow() != -1) {
 
             popupMenu.show(tabela, evt.getX(), evt.getY());
 
@@ -269,12 +271,12 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-        if(!txtCidade.getText().trim().isEmpty() &&           
-            !txtEmail.getText().trim().isEmpty() &&
-            !txtNome.getText().trim().isEmpty() &&
-            !getTelefone().isEmpty() &&
-            !getCpf().isEmpty() &&
-            cbEstado.getSelectedIndex() != 1){
+        if (!txtCidade.getText().trim().isEmpty()
+                && !txtEmail.getText().trim().isEmpty()
+                && !txtNome.getText().trim().isEmpty()
+                && !getTelefone().isEmpty()
+                && !getCpf().isEmpty()
+                && cbEstado.getSelectedIndex() != 1) {
 
             Cliente cliente = new Cliente();
 
@@ -287,17 +289,16 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
             listCliente.add(cliente);
             limparCampos();
             updateTable();
-        }
-        else{
-            JOptionPane.showMessageDialog(null,"ERRO: Preencha todos os Campos","ERRO!!",JOptionPane.ERROR_MESSAGE);
-                   
+        } else {
+            JOptionPane.showMessageDialog(null, "ERRO: Preencha todos os Campos", "ERRO!!", JOptionPane.ERROR_MESSAGE);
+
         }
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnCadastrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarTodosActionPerformed
         DAOGenerico daoG = new DAOGenerico();
 
-        for(Cliente c : listCliente){
+        for (Cliente c : listCliente) {
 
             daoG.salvar(c);
 
@@ -310,14 +311,16 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCadastrarTodosActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
-        
+
     }//GEN-LAST:event_editarActionPerformed
 
     private void deletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletarActionPerformed
         int confirm = JOptionPane.showConfirmDialog(null, "Realmente deseja excluir?", "Atenção",
-            JOptionPane.YES_NO_OPTION);
+                JOptionPane.YES_NO_OPTION);
 
-        if(confirm == JOptionPane.YES_OPTION) listCliente.remove(tabela.getSelectedRow());
+        if (confirm == JOptionPane.YES_OPTION) {
+            listCliente.remove(tabela.getSelectedRow());
+        }
 
         updateTable();
 
@@ -350,89 +353,86 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
     private void attCBox() {
-        
+
         listE = daoE.listarEstado();
         for (Estado est : listE) {
             cbEstado.addItem(est.getNome());
         }
     }
-    private void updateTable(){
-        
-        DefaultTableModel modelo = new DefaultTableModel(){
+
+    private void updateTable() {
+
+        DefaultTableModel modelo = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
-            
+
         };
-     
+
         modelo.addColumn("Nome");
         modelo.addColumn("Cidade");
         modelo.addColumn("Estado");
         modelo.addColumn("Email");
         modelo.addColumn("Telefone");
         modelo.addColumn("CPF");
-        
-        for(Cliente c : listCliente){
-            
+
+        for (Cliente c : listCliente) {
+
             modelo.addRow(new Object[]{
                 c.getNome(),
                 c.getCidade().getNome(),
                 c.getCidade().getEstado().getNome(),
                 c.getEmail(),
                 c.getTelefone(),
-                c.getCpf()            
+                c.getCpf()
             });
-            
-        }       
-        
-        tabela.setModel(modelo);      
-      
-        
+
+        }
+
+        tabela.setModel(modelo);
+
     }
-    
-    private void limparCampos(){
-        
+
+    private void limparCampos() {
+
         txtNome.setText("");
         cbEstado.setSelectedIndex(0);
-        txtCidade.setText("");        
-        
+        txtCidade.setText("");
+
     }
-    
-    private void setMask(){
-        
-        try{
-            ftxtTelefone.setFormatterFactory(new DefaultFormatterFactory (
+
+    private void setMask() {
+
+        try {
+            ftxtTelefone.setFormatterFactory(new DefaultFormatterFactory(
                     new MaskFormatter("(##) #####-####")));
             ftxtCpf.setFormatterFactory(new DefaultFormatterFactory(
                     new MaskFormatter("###.###.###-##")));
-        }
-        catch(ParseException pe){
+        } catch (ParseException pe) {
             pe.printStackTrace();
         }
-        
+
     }
-    
-    private String getTelefone(){
-        
+
+    private String getTelefone() {
+
         String telefone = ftxtTelefone.getText().replace("(", "");
         telefone = telefone.replace(")", "");
         telefone = telefone.replace(" ", "");
         telefone = telefone.replace("-", "");
-        
+
         return telefone;
-       
+
     }
-    
-    private String getCpf(){
-        
+
+    private String getCpf() {
+
         String cpf = ftxtCpf.getText().replace(".", "");
         cpf = cpf.replace("-", "");
-        
+
         return cpf;
-        
+
     }
-   
-    
-    
+
 }
