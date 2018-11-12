@@ -20,7 +20,7 @@ public class DAOCidade {
 		EntityManager em = Fabrica.getFabrica().createEntityManager();
 		EntityTransaction t = em.getTransaction();
 		try {
-                        Query query = em.createQuery("from Cidade as Cidade where Cidade.estado = :param order by Cidade.nome");
+                        Query query = em.createQuery("from Cidade as Cidade where Cidade.estado = "+ id +" order by Cidade.nome");
                         query.setParameter("param", id);
 			lista = query.getResultList();
 			return lista;
