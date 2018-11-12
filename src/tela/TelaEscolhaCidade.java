@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 public class TelaEscolhaCidade extends javax.swing.JDialog {
     private Estado estado;
     private Cidade cidade = new Cidade();
-    private List<Cidade> listCidadade = new ArrayList<>();
+    private List<Cidade> listCidade = new ArrayList<>();
 
     public TelaEscolhaCidade(java.awt.Frame parent, boolean modal, Estado est) {
         super(parent, modal);
@@ -18,7 +18,7 @@ public class TelaEscolhaCidade extends javax.swing.JDialog {
         
         estado = est;        
         DAOCidade daoC = new DAOCidade();
-        listCidadade = daoC.listarCidade(est.getId());
+        listCidade = daoC.listarCidade(est.getId());
         
         updateTable();
         
@@ -118,7 +118,7 @@ public class TelaEscolhaCidade extends javax.swing.JDialog {
         
         if(evt.getClickCount() == 2 && tabela.getSelectedRow() != -1){
             
-            cidade = listCidadade.get(tabela.getSelectedRow());
+            cidade = listCidade.get(tabela.getSelectedRow());
             
         }
         
@@ -193,7 +193,7 @@ public class TelaEscolhaCidade extends javax.swing.JDialog {
         
         modelo.addColumn("Nome");
         
-        for(Cidade c: listCidadade){
+        for(Cidade c: listCidade){
             
             modelo.addRow(new Object[]{
                 

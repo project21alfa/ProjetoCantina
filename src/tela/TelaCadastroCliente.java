@@ -249,9 +249,10 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        estado = listE.get(cbEstado.getSelectedIndex());
         TelaEscolhaCidade telaEC = new TelaEscolhaCidade(null, true, estado);
-        cidade = telaEC.getCidade();
-        telaEC.show();
+        telaEC.setVisible(true);
+        cidade = telaEC.getCidade();  
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void tabelaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseReleased

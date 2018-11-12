@@ -305,11 +305,10 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tabelaMouseReleased
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        Estado e = new Estado();
-        e= daoE.findByNomeE(cbEstado.getSelectedItem().toString());
+        estado = listE.get(cbEstado.getSelectedIndex());
         TelaEscolhaCidade telaEC = new TelaEscolhaCidade(null, true, estado);
-        cidade = telaEC.getCidade();
-        telaEC.show();
+        telaEC.setVisible(true);
+        cidade = telaEC.getCidade(); 
         
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
