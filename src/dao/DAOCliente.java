@@ -33,8 +33,7 @@ public class DAOCliente {
         
         try{
            t.begin();
-           
-           em.remove(f);
+           em.remove(t);
            t.commit();
            return true;
         }

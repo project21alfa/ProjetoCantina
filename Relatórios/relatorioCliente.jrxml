@@ -2,7 +2,7 @@
 <!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relCliente" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="696ac92d-2acc-4b51-b64d-643f417fa85a">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="conexao "/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT * FROM Cliente]]>
 	</queryString>
@@ -19,9 +19,9 @@
 	<title>
 		<band height="64" splitType="Stretch">
 			<staticText>
-				<reportElement x="30" y="10" width="505" height="30" uuid="ab33cad7-f2f4-4e08-9535-6828bcede32b"/>
+				<reportElement stretchType="ContainerHeight" x="30" y="10" width="505" height="30" uuid="ab33cad7-f2f4-4e08-9535-6828bcede32b"/>
 				<textElement textAlignment="Center">
-					<font size="19"/>
+					<font size="22" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Relatório Cliente]]></text>
 			</staticText>
@@ -36,60 +36,70 @@
 	<detail>
 		<band height="186" splitType="Stretch">
 			<textField>
-				<reportElement x="37" y="19" width="100" height="30" uuid="402de320-873e-4889-a668-ead3ecdadcf5"/>
+				<reportElement x="0" y="57" width="95" height="30" uuid="da6ec61d-f66c-42a7-86da-2954208a26a4"/>
 				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="-63" y="19" width="100" height="30" uuid="04aa60a1-5017-4731-ae18-4b467a4d6423"/>
-				<text><![CDATA[cpf]]></text>
-			</staticText>
 			<textField>
-				<reportElement x="173" y="23" width="100" height="30" uuid="798e5ccd-e87e-4d4c-bf35-33d47645c69c"/>
+				<reportElement x="95" y="57" width="92" height="30" uuid="c7ed3517-3777-4660-9849-0392ccf17fef"/>
 				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="73" y="23" width="100" height="30" uuid="50db2029-5143-4f2e-a585-7d14fe8ab647"/>
-				<text><![CDATA[email]]></text>
-			</staticText>
 			<textField>
-				<reportElement x="318" y="16" width="100" height="30" uuid="fca53e10-4360-4384-b739-2ecd6601f186"/>
+				<reportElement x="187" y="57" width="92" height="30" uuid="b5dc767b-b4fa-42fb-b17f-98a61c8749fa"/>
 				<textFieldExpression><![CDATA[$F{endereco}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="218" y="16" width="100" height="30" uuid="7672b264-ca10-4a3b-bbe6-ee89236d0434"/>
-				<text><![CDATA[endereco]]></text>
-			</staticText>
 			<textField>
-				<reportElement x="445" y="12" width="100" height="30" uuid="6c12cfec-3138-4fcb-8f81-fe449e228fad"/>
+				<reportElement x="279" y="57" width="92" height="30" uuid="f87827a4-26dd-40ee-9b09-bcd78c1f1940"/>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="345" y="12" width="100" height="30" uuid="c31e24f0-b5be-45d8-af15-b891218bf507"/>
-				<text><![CDATA[nome]]></text>
-			</staticText>
 			<textField>
-				<reportElement x="28" y="86" width="100" height="30" uuid="52c32e83-9ecf-4413-9713-f0f985e0dca5"/>
+				<reportElement x="371" y="57" width="92" height="30" uuid="b46796fe-aba6-42e3-a5f2-8fae1fb9ae70"/>
 				<textFieldExpression><![CDATA[$F{rg}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="-72" y="86" width="100" height="30" uuid="48ad460d-42b6-4a38-8e84-75a6aea827bd"/>
-				<text><![CDATA[rg]]></text>
-			</staticText>
 			<textField>
-				<reportElement x="191" y="88" width="100" height="30" uuid="61b77f9f-1287-4701-ac67-ba8de9895855"/>
+				<reportElement x="463" y="57" width="92" height="30" uuid="a84ded9c-f210-40f3-81b3-14dad124defa"/>
 				<textFieldExpression><![CDATA[$F{telefone}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="91" y="88" width="100" height="30" uuid="dbf36ecb-7ac6-4ec3-9811-ce7ef3f0e972"/>
-				<text><![CDATA[telefone]]></text>
+				<reportElement x="-6" y="10" width="70" height="21" uuid="1c87ae07-2a9d-4478-94ba-7a1d6edd54d8"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[CPF]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="344" y="98" width="100" height="30" uuid="042d3db7-b5f7-40fc-9f2d-198c23cc86b7"/>
-				<textFieldExpression><![CDATA[$F{Cidade_id}]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement x="244" y="98" width="100" height="30" uuid="a904dc76-6bc9-4292-8daf-f44cc1553299"/>
-				<text><![CDATA[Cidade_id]]></text>
+				<reportElement x="86" y="10" width="70" height="21" uuid="f4dfd4cb-7ac2-4225-8c2b-ccb930bc62d9"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Email]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="10" width="70" height="21" uuid="86f1482f-47c2-4250-ad08-27ec7c3ab14d"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Endereço]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="277" y="10" width="70" height="21" uuid="9c37bbcb-b1fc-4a42-8d5a-8959bbedf507"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="10" width="70" height="21" uuid="6cb075ba-25ef-41ce-af9f-03d579fd219a"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[RG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="462" y="10" width="70" height="21" uuid="aa2bf58b-fa04-4adf-8116-7be2c2e33e3f"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Telefone]]></text>
 			</staticText>
 		</band>
 	</detail>

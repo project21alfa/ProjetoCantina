@@ -2,7 +2,7 @@
 <!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioFuncionario" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ba3efdff-6ec9-47a0-b929-6d89780b96e7">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Relatorio"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT * FROM Funcionario]]>
 	</queryString>
@@ -16,10 +16,13 @@
 	<title>
 		<band height="64" splitType="Stretch">
 			<staticText>
-				<reportElement positionType="FixRelativeToBottom" x="100" y="0" width="364" height="30" uuid="6fb46a05-d304-43a4-aa7b-605b912da21e"/>
+				<reportElement positionType="FixRelativeToBottom" x="95" y="20" width="364" height="30" uuid="6fb46a05-d304-43a4-aa7b-605b912da21e"/>
 				<box>
 					<pen lineWidth="1.0"/>
 				</box>
+				<textElement textAlignment="Center">
+					<font size="22" isItalic="true"/>
+				</textElement>
 				<text><![CDATA[Relatorio Funcionário]]></text>
 			</staticText>
 		</band>
@@ -33,21 +36,49 @@
 	<detail>
 		<band height="125" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="48" width="141" height="30" uuid="d4ee0df5-567d-432d-aa4e-bfea69360126"/>
+				<reportElement x="0" y="60" width="141" height="30" uuid="9198d0aa-6b44-499d-b8ab-52bd75b21372"/>
 				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="141" y="48" width="138" height="30" uuid="c71b2398-4cdf-45a8-8257-932bc8d069cd"/>
+				<reportElement x="141" y="60" width="138" height="30" uuid="6fb0fe08-4232-4169-a0a2-140fa9aaa853"/>
 				<textFieldExpression><![CDATA[$F{login}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="279" y="48" width="138" height="30" uuid="561fcf61-f08c-4615-b2f4-387010d117dc"/>
+				<reportElement x="279" y="60" width="138" height="30" uuid="c9afa247-151b-45e8-8baa-39c352b049bd"/>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="417" y="48" width="138" height="30" uuid="ac39ceb2-a9a5-4533-a27e-922f715fb85a"/>
+				<reportElement x="417" y="60" width="138" height="30" uuid="8d74dfbe-72cb-482e-a9cf-26f726b22e8a"/>
 				<textFieldExpression><![CDATA[$F{senha}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="0" y="30" width="81" height="21" uuid="d006ad48-2771-47d4-8481-37e00bda9a68"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[CPF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="30" width="81" height="21" uuid="decbe535-ce6c-4de4-9cff-bf66998c5d8f"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Login	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="30" width="81" height="21" uuid="ef302084-ec16-4976-a148-a7fd35f1cf97"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="417" y="30" width="81" height="21" uuid="4618cf39-00ad-4406-8e77-eb6a9a1a31a3"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Senha]]></text>
+			</staticText>
 		</band>
 	</detail>
 	<columnFooter>
