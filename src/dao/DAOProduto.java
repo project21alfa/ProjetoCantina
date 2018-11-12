@@ -2,6 +2,7 @@ package dao;
 
 import entidades.Categoria;
 import entidades.Cliente;
+import entidades.Fornecedor;
 import entidades.Produto;
 import fabrica.Fabrica;
 import java.util.ArrayList;
@@ -28,6 +29,26 @@ public class DAOProduto {
         }
 
     }
+    public boolean excluir(long id){
+        em = Fabrica.getFabrica().createEntityManager();
+        t = em.getTransaction();
+        
+        try{
+           t.begin();
+           Produto f = em.find(new Produto().getClass(), id);
+           em.remove(f);
+           t.commit();
+           return true;
+        }
+        catch(PersistenceException pe){
+            pe.printStackTrace();
+            t.rollback();
+            return false;
+        }
+        finally{
+            em.close();
+        }
+    }
     public List<Produto> listByNameSearch(String nome){
         em = Fabrica.getFabrica().createEntityManager();
         List<Produto> listProduto = new ArrayList<>();
@@ -43,26 +64,7 @@ public class DAOProduto {
         
     }
     
-    public boolean excluir(long id){
-        em = Fabrica.getFabrica().createEntityManager();
-        t = em.getTransaction();
-        
-        try{
-           t.begin();
-           Produto p = em.find(new Produto().getClass(), id);
-           em.remove(p);
-           t.commit();
-           return true;
-        }
-        catch(PersistenceException pe){
-            pe.printStackTrace();
-            t.rollback();
-            return false;
-        }
-        finally{
-            em.close();
-        }
-    }
+    
     
     public boolean alterar(Produto p){
         em = Fabrica.getFabrica().createEntityManager();

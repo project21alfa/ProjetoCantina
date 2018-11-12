@@ -1,5 +1,6 @@
 package tela.alterar;
 
+import dao.DAOCliente;
 import dao.DAOGenerico;
 import entidades.Cliente;
 
@@ -127,14 +128,14 @@ public class TelaAlterarCliente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        DAOGenerico d = new DAOGenerico();
+        DAOCliente d = new DAOCliente();
         c.setNome(txtNome.getText());
         c.setCpf(txtCpf.getText());
-        c.setEmail(txtCpf.getText());
+        c.setEmail(txtEmail.getText());
         c.setTelefone(txtTelefone.getText());
         c.setEndereco(txtEndereço.getText());
 
-        d.alterar(c,Cliente.class,c.getId());
+        d.alterar(c);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -128,7 +128,7 @@ public class TelaConsultaFornecedor extends javax.swing.JInternalFrame {
                 Fornecedor f = listFornecedor.get(tabela.getSelectedRow());
                 dao.excluir(f.getId());
             }
-            updateTable();
+            attBox();
         }
     }//GEN-LAST:event_miExcluirActionPerformed
 

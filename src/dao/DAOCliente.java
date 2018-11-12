@@ -2,6 +2,7 @@ package dao;
 
 import entidades.Cliente;
 import entidades.Estado;
+import entidades.Funcionario;
 import fabrica.Fabrica;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,26 @@ public class DAOCliente {
         return listClientes;
         
     }
+     public boolean excluir(long id){
+        em = Fabrica.getFabrica().createEntityManager();
+        t = em.getTransaction();
+        
+        try{
+           t.begin();
+           
+           em.remove(f);
+           t.commit();
+           return true;
+        }
+        catch(PersistenceException pe){
+            pe.printStackTrace();
+            t.rollback();
+            return false;
+        }
+        finally{
+            em.close();
+        }
+    }
     public List<Cliente> listarCliente() {
         List<Cliente> lista = new ArrayList<Cliente>();
         em = Fabrica.getFabrica().createEntityManager();
@@ -40,24 +61,44 @@ public class DAOCliente {
         }
 
     }
-    public boolean excluir(long id){
-        em = Fabrica.getFabrica().createEntityManager();
-        t = em.getTransaction();
-        
-        try{
-           t.begin();
-           Cliente c = em.find(new Cliente().getClass(), id);
-           em.remove(c);
-           t.commit();
-           return true;
-        }
-        catch(PersistenceException pe){
-            pe.printStackTrace();
+
+    public Cliente alterar(Cliente clii){
+        EntityManager em = Fabrica.getFabrica().createEntityManager();
+	EntityTransaction t = em.getTransaction();
+        Cliente cli = new Cliente();
+        cli = clii;
+        try {
+             t.begin();
+                 em.merge(cli);//alterar a entidade
+	         t.commit();
+	          
+            
+        } catch (Exception e) {
             t.rollback();
-            return false;
-        }
-        finally{
+            e.printStackTrace();
+        }finally{
             em.close();
         }
+        return cli;
     }
+
+    public Estado alterar(Estado estadoAlterar) {
+		EntityManager em = Fabrica.getFabrica().createEntityManager();
+		EntityTransaction t = em.getTransaction();
+		Estado estadoBanco = null;
+		try {
+			estadoBanco = em.find(Estado.class, estadoAlterar.getId());
+			t.begin();
+			estadoBanco.setNome(estadoAlterar.getNome());
+			estadoBanco.setSigla(estadoAlterar.getSigla());
+			em.merge(estadoBanco);
+			t.commit();
+		} catch (Exception e) {
+			t.rollback();
+			e.printStackTrace();
+		} finally {
+			em.close();
+		}
+		return estadoAlterar;
+	}
 }

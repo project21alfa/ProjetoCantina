@@ -29,6 +29,7 @@ public class DAOFornecedor {
         
     }
     
+    
     public boolean excluir(long id){
         em = Fabrica.getFabrica().createEntityManager();
         t = em.getTransaction();
