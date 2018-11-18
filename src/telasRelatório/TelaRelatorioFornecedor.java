@@ -42,7 +42,7 @@ public class TelaRelatorioFornecedor extends javax.swing.JDialog {
 
 		try {
 
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/sistemacantina", "root", "mysql");
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/sistemacantina", "root", "");
 			
 		Statement st = conn.createStatement();
 			

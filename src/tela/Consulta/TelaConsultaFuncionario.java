@@ -137,13 +137,13 @@ public class TelaConsultaFuncionario extends javax.swing.JInternalFrame {
         Funcionario f = listFuncionario.get(tabela.getSelectedRow());
         String senha = JOptionPane.showInputDialog("Informe a senha");
         
-        if(f.getSenha() == senha){
+        
             TelaAlterarFuncionario telaAF = new TelaAlterarFuncionario(null, true, f);
             telaAF.setVisible(true);
             f = telaAF.getFuncionario();
             
             dao.alterar(f);
-        }
+        
         updateTable();
             
     }//GEN-LAST:event_miAlterarActionPerformed

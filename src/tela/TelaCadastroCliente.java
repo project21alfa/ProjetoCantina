@@ -27,6 +27,7 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
         initComponents();
         attCBox();
         updateTable();
+        setMask();
     }
 
     @SuppressWarnings("unchecked")
@@ -271,28 +272,18 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-        if (!txtCidade.getText().trim().isEmpty()
-                && !txtEmail.getText().trim().isEmpty()
-                && !txtNome.getText().trim().isEmpty()
-                && !getTelefone().isEmpty()
-                && !getCpf().isEmpty()
-                && cbEstado.getSelectedIndex() != 1) {
-
-            Cliente cliente = new Cliente();
+        Cliente cliente = new Cliente();
 
             cliente.setNome(txtNome.getText().trim().toUpperCase());
             cliente.setEmail(txtEmail.getText().trim().toUpperCase());
             cliente.setTelefone(getTelefone());
             cliente.setCpf(getCpf());
+            cidade.setEstado(listE.get(cbEstado.getSelectedIndex()));
             cliente.setCidade(cidade);
-
             listCliente.add(cliente);
             limparCampos();
             updateTable();
-        } else {
-            JOptionPane.showMessageDialog(null, "ERRO: Preencha todos os Campos", "ERRO!!", JOptionPane.ERROR_MESSAGE);
-
-        }
+        
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnCadastrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarTodosActionPerformed
@@ -399,6 +390,9 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
         txtNome.setText("");
         cbEstado.setSelectedIndex(0);
         txtCidade.setText("");
+        ftxtCpf.setText("");
+        ftxtTelefone.setText("");
+        txtEmail.setText("");
 
     }
 

@@ -257,6 +257,7 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
             fornecedor.setEmail(txtEmail.getText().trim().toUpperCase());
             fornecedor.setCnpj(getCnpj());
             fornecedor.setTelefone(getTelefone());
+            cidade.setEstado(estado);
             fornecedor.setCidade(cidade);
 
             listFornecedor.add(fornecedor);

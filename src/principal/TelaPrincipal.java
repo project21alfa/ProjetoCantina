@@ -25,9 +25,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     TelaCadastroFornecedor telaCF = new TelaCadastroFornecedor();
     TelaCadastroFuncionario telaCFF = new TelaCadastroFuncionario();
     TelaConsultaFuncionario telaCoFF = new TelaConsultaFuncionario();
-    TelaConsultaCliente telaCoC = new TelaConsultaCliente();
+    
     TelaConsultaProduto telaCop = new TelaConsultaProduto();
-    TelaConsultaFornecedor telaCoF = new TelaConsultaFornecedor();
+    //TelaConsultaFornecedor telaCoF = new TelaConsultaFornecedor();
     
 
     @SuppressWarnings("unchecked")
@@ -240,6 +240,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
          if (telaCoFF.getDesktopPane() == null) {
+             telaCoFF = new TelaConsultaFuncionario();
             jDesktopPane1.add(telaCoFF);
             telaCoFF.show();
         }
@@ -251,24 +252,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        if (telaCoC.getDesktopPane() == null) {
+        /*if (telaCoC.getDesktopPane() == null) {
+            telaCoC = new TelaConsultaCliente();
             jDesktopPane1.add(telaCoC);
             telaCoC.show();
-        }
+        }*/
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         if (telaCop.getDesktopPane() == null) {
+            telaCop = new TelaConsultaProduto();
             jDesktopPane1.add(telaCop);
             telaCop.show();
         }
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-        if (telaCoF.getDesktopPane() == null) {
+        /*if (telaCoF.getDesktopPane() == null) {
+            telaCoF = new TelaConsultaFornecedor();
             jDesktopPane1.add(telaCoF);
             telaCoF.show();
-        }
+        }*/
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
