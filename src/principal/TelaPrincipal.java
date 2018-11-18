@@ -25,7 +25,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     TelaCadastroFornecedor telaCF = new TelaCadastroFornecedor();
     TelaCadastroFuncionario telaCFF = new TelaCadastroFuncionario();
     TelaConsultaFuncionario telaCoFF = new TelaConsultaFuncionario();
-    
+    //TelaConsultaCliente telaCoC = new TelaConsultaCliente();
     TelaConsultaProduto telaCop = new TelaConsultaProduto();
     //TelaConsultaFornecedor telaCoF = new TelaConsultaFornecedor();
     

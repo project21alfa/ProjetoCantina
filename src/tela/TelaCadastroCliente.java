@@ -298,7 +298,7 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
         listCliente = new ArrayList<>();
         updateTable();
         limparCampos();
-
+        JOptionPane.showMessageDialog(null,"salvo");
     }//GEN-LAST:event_btnCadastrarTodosActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed

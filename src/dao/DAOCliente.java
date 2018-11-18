@@ -48,7 +48,8 @@ public class DAOCliente {
     }
     public List<Cliente> listarCliente() {
         List<Cliente> lista = new ArrayList<Cliente>();
-        em = Fabrica.getFabrica().createEntityManager();
+        EntityManager em = Fabrica.getFabrica().createEntityManager();
+	EntityTransaction t = em.getTransaction();
         try {
             lista = em.createQuery("from Cliente").getResultList();
             return lista;

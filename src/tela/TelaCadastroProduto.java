@@ -275,7 +275,7 @@ public class TelaCadastroProduto extends javax.swing.JInternalFrame {
         limparCampos();
 
 
-
+        JOptionPane.showMessageDialog(null,"salvo");
     }//GEN-LAST:event_JCadastrarActionPerformed
 
     

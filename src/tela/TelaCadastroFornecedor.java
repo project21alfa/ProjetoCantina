@@ -244,13 +244,13 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-        if (!txtCidade.getText().trim().isEmpty()
+      /*  if (!txtCidade.getText().trim().isEmpty()
                 && !getTelefone().isEmpty()
                 && !txtEmail.getText().trim().isEmpty()
                 && !txtNome.getText().trim().isEmpty()
                 && !getCnpj().isEmpty()
                 && cbEstado.getSelectedIndex() != 1) {
-
+                */
             Fornecedor fornecedor = new Fornecedor();
 
             fornecedor.setNome(txtNome.getText().trim().toUpperCase());
@@ -259,11 +259,12 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
             fornecedor.setTelefone(getTelefone());
             cidade.setEstado(estado);
             fornecedor.setCidade(cidade);
-
+            cidade.setEstado(listE.get(cbEstado.getSelectedIndex()));
+            fornecedor.setCidade(cidade);
             listFornecedor.add(fornecedor);
             limparCampos();
             updateTable();
-        }
+        //}
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
@@ -282,7 +283,7 @@ public class TelaCadastroFornecedor extends javax.swing.JInternalFrame {
         listFornecedor = new ArrayList<>();
         updateTable();
         limparCampos();
-
+        JOptionPane.showMessageDialog(null,"salvo");
     }//GEN-LAST:event_btnCadastrarTodosActionPerformed
 
     private void deletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletarActionPerformed
