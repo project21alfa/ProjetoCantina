@@ -29,6 +29,22 @@ public class DAOProduto {
         }
 
     }
+    public Produto salvar(Produto entidade ){
+		em = Fabrica.getFabrica().createEntityManager();
+		EntityTransaction t = em.getTransaction();
+		try{
+			t.begin();
+			em.persist(entidade);
+			t.commit();
+		}catch(Exception e){
+			t.rollback();
+			e.printStackTrace();
+		}finally{
+			em.close();
+		}
+		
+		return entidade;
+	}
     public boolean excluir(long id){
         em = Fabrica.getFabrica().createEntityManager();
         t = em.getTransaction();
@@ -63,28 +79,42 @@ public class DAOProduto {
         return listProduto;
         
     }
+   /* public boolean alterar(T entidade, Class c, long id){
+	      em = Fabrica.getFabrica().createEntityManager();
+	      EntityTransaction t = em.getTransaction();
+	      try{
+	         t.begin();
+	         entidade = (T) em.find(c, id);//buscando a entidade no banco
+	         em.merge(entidade);//alterar a entidade
+	         t.commit();
+	         return true; 
+	      }catch(Exception e){
+	        e.printStackTrace();
+	        t.rollback();
+	        return false;
+	      }finally{
+	         em.close();
+	       }
+	}*/
     
+    public boolean alterar(Produto p,long id){
+	      em = Fabrica.getFabrica().createEntityManager();
+	      EntityTransaction t = em.getTransaction();
+	      try{
+	         t.begin();
+	         p = em.find(new Produto().getClass(), id);//buscando a entidade no banco
+	         em.merge(p);//alterar a entidade
+	         t.commit();
+	         return true; 
+	      }catch(Exception e){
+	        e.printStackTrace();
+	        t.rollback();
+	        return false;
+	      }finally{
+	         em.close();
+	       }
+	}
     
-    
-    public boolean alterar(Produto p){
-        em = Fabrica.getFabrica().createEntityManager();
-        t = em.getTransaction();
-        
-        try{
-            t.begin();
-            p = em.find(p.getClass(), p.getId());
-            em.merge(p);
-            t.commit();
-            return true;
-        }
-        catch(PersistenceException pe){
-            pe.printStackTrace();
-            return false;
-        }
-        finally{
-            em.close();
-        }
-    }
       public Categoria findByNomeC(String nome) {
 		  em = Fabrica.getFabrica().createEntityManager();
 	        Query query = em.createQuery("from Categoria as categoria where categoria.nome = :param");

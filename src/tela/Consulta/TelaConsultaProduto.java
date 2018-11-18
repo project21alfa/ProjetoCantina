@@ -109,7 +109,7 @@ public class TelaConsultaProduto extends javax.swing.JInternalFrame {
 
     private void miAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAlterarActionPerformed
         Produto p = listProd.get(tabela.getSelectedRow());
-
+        
         TelaAlterarProduto telaAP = new TelaAlterarProduto(null, true, p);
         telaAP.setVisible(true);
         updateTable();

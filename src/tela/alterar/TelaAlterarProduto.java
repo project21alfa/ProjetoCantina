@@ -24,16 +24,16 @@ public class TelaAlterarProduto extends javax.swing.JDialog {
     }
     
     public TelaAlterarProduto(java.awt.Frame parent, boolean modal, Produto p) {
+        
         super(parent, modal);
         initComponents();
-        this.p = p;
         txtnome.setText(p.getNome());
         txtprecoComp.setText(""+p.getPrecoCompra());
         txtprecoVen.setText(""+p.getPrecoVenda());
         txtqtdeEst.setText(""+p.getQuantEstoque());
         DAOProduto daop = new DAOProduto();
-        daop.alterar(p);
         attCBox();
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -177,14 +177,18 @@ public class TelaAlterarProduto extends javax.swing.JDialog {
     }//GEN-LAST:event_txtprecoCompActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        DAOGenerico d = new DAOGenerico();
+        
         Produto pp = new Produto();
+        Categoria ccc = new Categoria();
+        DAOProduto dp = new DAOProduto();
         pp.setNome(txtnome.getText());
         pp.setQuantEstoque(Integer.parseInt(txtqtdeEst.getText()));
         pp.setPrecoCompra(Integer.parseInt(txtprecoComp.getText()));
         pp.setPrecoVenda(Integer.parseInt(txtprecoVen.getText()));
-        //falta a categoria
-        d.alterar(pp,Produto.class,p.getId());
+        ccc =dp.findByNomeC(cbCat.getSelectedItem().toString());
+        produto.setCategoria(ccc);
+        dp.excluir(p.getId());
+        dp.salvar(pp);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

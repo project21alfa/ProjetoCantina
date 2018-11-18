@@ -186,7 +186,7 @@ public class TelaConsultaFuncionario extends javax.swing.JInternalFrame {
     }
     
     private void updateTable() {
-
+        listFuncionario = dao.listarFuncionario();
         DefaultTableModel modelo = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -197,7 +197,7 @@ public class TelaConsultaFuncionario extends javax.swing.JInternalFrame {
 
         modelo.addColumn("Nome");
         modelo.addColumn("CPF");
-
+        
         for (Funcionario f : listFuncionario) {
 
             modelo.addRow(new Object[]{
