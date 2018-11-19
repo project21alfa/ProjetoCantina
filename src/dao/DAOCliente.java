@@ -46,10 +46,24 @@ public class DAOCliente {
             em.close();
         }
     }
-    public List<Cliente> listarCliente() {
+    /*public List<Cliente> listarCliente() {
         List<Cliente> lista = new ArrayList<Cliente>();
         EntityManager em = Fabrica.getFabrica().createEntityManager();
 	EntityTransaction t = em.getTransaction();
+        try {
+            lista = em.createQuery("from Cliente").getResultList();
+            return lista;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            em.close();
+        }
+
+    }*/
+     public List<Cliente> listarCliente() {
+        List<Cliente> lista = new ArrayList<Cliente>();
+        em = Fabrica.getFabrica().createEntityManager();
         try {
             lista = em.createQuery("from Cliente").getResultList();
             return lista;

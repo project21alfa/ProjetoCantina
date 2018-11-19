@@ -169,7 +169,7 @@ public class TelaConsultaCliente extends javax.swing.JInternalFrame {
         for (Cliente c : listCliente) {
                modelo.addRow(new Object[]{
                 c.getNome(),
-              //  c.getCidade().getNome(),
+              // c.getCidade().getNome(),
               //  c.getCidade().getEstado().getNome(),
                 c.getEmail(),
                 c.getTelefone(),
@@ -190,8 +190,8 @@ public class TelaConsultaCliente extends javax.swing.JInternalFrame {
         };
 
         modelo.addColumn("Nome");
-        modelo.addColumn("Cidade");
-        modelo.addColumn("Estado");
+        //modelo.addColumn("Cidade");
+        //modelo.addColumn("Estado");
         modelo.addColumn("Email");
         modelo.addColumn("Telefone");
         modelo.addColumn("CPF");
@@ -202,8 +202,8 @@ public class TelaConsultaCliente extends javax.swing.JInternalFrame {
 
             modelo.addRow(new Object[]{
                 c.getNome(),
-                c.getCidade().getNome(),
-                c.getCidade().getEstado().getNome(),
+                //c.getCidade().getNome(),
+                //c.getCidade().getEstado().getNome(),
                 c.getEmail(),
                 c.getTelefone(),
                 c.getCpf()

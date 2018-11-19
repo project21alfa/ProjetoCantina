@@ -9,8 +9,10 @@ import javax.swing.text.MaskFormatter;
 
 public class TelaAlterarFuncionario extends javax.swing.JDialog {
     Funcionario funcionario = new Funcionario();
+    DAOFuncionario d = new DAOFuncionario();
 
     public TelaAlterarFuncionario(java.awt.Frame parent, boolean modal, Funcionario f) {
+       
         super(parent, modal);        
         initComponents();
         funcionario = f;
@@ -155,6 +157,7 @@ public class TelaAlterarFuncionario extends javax.swing.JDialog {
             funcionario.setNome(txtNome.getText().trim());
             funcionario.setLogin(txtLogin.getText().trim());
             funcionario.setCpf(getCpf());
+            d.alterar(funcionario,Funcionario.class,funcionario.getId());
             
             if(checkAlterarSenha.isSelected() && 
                     !getSenha(pwConfirma).trim().isEmpty()  &&

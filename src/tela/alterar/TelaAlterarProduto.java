@@ -7,6 +7,7 @@ import entidades.Categoria;
 import entidades.Produto;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class TelaAlterarProduto extends javax.swing.JDialog {
     
@@ -27,6 +28,7 @@ public class TelaAlterarProduto extends javax.swing.JDialog {
         
         super(parent, modal);
         initComponents();
+        this.p = p;
         txtnome.setText(p.getNome());
         txtprecoComp.setText(""+p.getPrecoCompra());
         txtprecoVen.setText(""+p.getPrecoVenda());
@@ -181,14 +183,14 @@ public class TelaAlterarProduto extends javax.swing.JDialog {
         Produto pp = new Produto();
         Categoria ccc = new Categoria();
         DAOProduto dp = new DAOProduto();
+        pp.setId(p.getId());
         pp.setNome(txtnome.getText());
         pp.setQuantEstoque(Integer.parseInt(txtqtdeEst.getText()));
         pp.setPrecoCompra(Integer.parseInt(txtprecoComp.getText()));
         pp.setPrecoVenda(Integer.parseInt(txtprecoVen.getText()));
         ccc =dp.findByNomeC(cbCat.getSelectedItem().toString());
-        produto.setCategoria(ccc);
-        dp.excluir(p.getId());
-        dp.salvar(pp);
+        pp.setCategoria(ccc);
+        dp.alterar(pp,Produto.class,p.getId());
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

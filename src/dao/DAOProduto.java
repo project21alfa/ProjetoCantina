@@ -79,13 +79,14 @@ public class DAOProduto {
         return listProduto;
         
     }
-   /* public boolean alterar(T entidade, Class c, long id){
+    public boolean alterar(Produto pp, Class c, long id){
 	      em = Fabrica.getFabrica().createEntityManager();
 	      EntityTransaction t = em.getTransaction();
+              Produto p = new Produto();
 	      try{
 	         t.begin();
-	         entidade = (T) em.find(c, id);//buscando a entidade no banco
-	         em.merge(entidade);//alterar a entidade
+	         p = em.find(new Produto().getClass(), id);//buscando a entidade no banco
+	         em.merge(pp);//alterar a entidade
 	         t.commit();
 	         return true; 
 	      }catch(Exception e){
@@ -95,9 +96,9 @@ public class DAOProduto {
 	      }finally{
 	         em.close();
 	       }
-	}*/
+	}
     
-    public boolean alterar(Produto p,long id){
+    /*public boolean alterar(Produto p,long id){
 	      em = Fabrica.getFabrica().createEntityManager();
 	      EntityTransaction t = em.getTransaction();
 	      try{
@@ -113,7 +114,7 @@ public class DAOProduto {
 	      }finally{
 	         em.close();
 	       }
-	}
+	}*/
     
       public Categoria findByNomeC(String nome) {
 		  em = Fabrica.getFabrica().createEntityManager();

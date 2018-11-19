@@ -112,7 +112,7 @@ public class TelaConsultaProduto extends javax.swing.JInternalFrame {
         
         TelaAlterarProduto telaAP = new TelaAlterarProduto(null, true, p);
         telaAP.setVisible(true);
-        updateTable();
+        attBox();
     }//GEN-LAST:event_miAlterarActionPerformed
 
     private void miExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miExcluirActionPerformed

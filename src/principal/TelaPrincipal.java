@@ -252,7 +252,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        /*if (telaCoC.getDesktopPane() == null) {
+       /* if (telaCoC.getDesktopPane() == null) {
             telaCoC = new TelaConsultaCliente();
             jDesktopPane1.add(telaCoC);
             telaCoC.show();

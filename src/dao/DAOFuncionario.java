@@ -2,6 +2,7 @@ package dao;
 
 import entidades.Cliente;
 import entidades.Funcionario;
+import entidades.Produto;
 import fabrica.Fabrica;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,25 +67,25 @@ public class DAOFuncionario {
         }
     }
     
-    public boolean alterar(Funcionario f){
-        em = Fabrica.getFabrica().createEntityManager();
-        t = em.getTransaction();
-        
-        try{
-            t.begin();
-            f = em.find(f.getClass(), f.getId());
-            em.merge(f);
-            t.commit();
-            return true;
-        }
-        catch(PersistenceException pe){
-            pe.printStackTrace();
-            return false;
-        }
-        finally{
-            em.close();
-        }
-    }
+     public boolean alterar(Funcionario pp, Class c, long id){
+	      em = Fabrica.getFabrica().createEntityManager();
+	      EntityTransaction t = em.getTransaction();
+              Funcionario p = new Funcionario();
+	      try{
+	         t.begin();
+	         p = em.find(new Funcionario().getClass(), id);//buscando a entidade no banco
+	         em.merge(pp);//alterar a entidade
+	         t.commit();
+	         return true; 
+	      }catch(Exception e){
+	        e.printStackTrace();
+	        t.rollback();
+	        return false;
+	      }finally{
+	         em.close();
+	       }
+	}
+     
     public List<Funcionario> listarFuncionario() {
         List<Funcionario> lista = new ArrayList<Funcionario>();
         em = Fabrica.getFabrica().createEntityManager();
