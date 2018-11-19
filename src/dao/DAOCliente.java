@@ -46,6 +46,24 @@ public class DAOCliente {
             em.close();
         }
     }
+     public boolean alterar(Cliente pp, Class c, long id){
+	      em = Fabrica.getFabrica().createEntityManager();
+	      EntityTransaction t = em.getTransaction();
+              Cliente p = new Cliente();
+	      try{
+	         t.begin();
+	         p = em.find(new Cliente().getClass(), id);//buscando a entidade no banco
+	         em.merge(pp);//alterar a entidade
+	         t.commit();
+	         return true; 
+	      }catch(Exception e){
+	        e.printStackTrace();
+	        t.rollback();
+	        return false;
+	      }finally{
+	         em.close();
+	       }
+	}
     /*public List<Cliente> listarCliente() {
         List<Cliente> lista = new ArrayList<Cliente>();
         EntityManager em = Fabrica.getFabrica().createEntityManager();

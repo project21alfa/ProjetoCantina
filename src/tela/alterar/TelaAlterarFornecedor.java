@@ -1,5 +1,6 @@
 package tela.alterar;
 
+import dao.DAOFornecedor;
 import entidades.Cidade;
 import entidades.Estado;
 import entidades.Fornecedor;
@@ -13,6 +14,8 @@ public class TelaAlterarFornecedor extends javax.swing.JDialog {
     private Fornecedor fornecedor = new Fornecedor();
     private Cidade cidade = new Cidade();
     private Estado estado =  new Estado();
+    DAOFornecedor d = new DAOFornecedor();
+    
 
     public TelaAlterarFornecedor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -182,7 +185,7 @@ public class TelaAlterarFornecedor extends javax.swing.JDialog {
             fornecedor.setCnpj(getCnpj());
             fornecedor.setTelefone(getTelefone());
             fornecedor.setCidade(cidade);
-
+            d.alterar(fornecedor,Fornecedor.class,fornecedor.getId());
             dispose();
             
         }

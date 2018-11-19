@@ -140,11 +140,8 @@ public class TelaConsultaFuncionario extends javax.swing.JInternalFrame {
         
             TelaAlterarFuncionario telaAF = new TelaAlterarFuncionario(null, true, f);
             telaAF.setVisible(true);
-            f = telaAF.getFuncionario();
-            
-            dao.alterar(f);
         
-        updateTable();
+        attBox();
             
     }//GEN-LAST:event_miAlterarActionPerformed
 

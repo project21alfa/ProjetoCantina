@@ -2,6 +2,7 @@ package dao;
 
 import entidades.Cliente;
 import entidades.Fornecedor;
+import entidades.Funcionario;
 import fabrica.Fabrica;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,24 @@ public class DAOFornecedor {
         
     }
     
-    
+    public boolean alterar(Fornecedor pp, Class c, long id){
+	      em = Fabrica.getFabrica().createEntityManager();
+	      EntityTransaction t = em.getTransaction();
+              Fornecedor p = new Fornecedor();
+	      try{
+	         t.begin();
+	         p = em.find(new Fornecedor().getClass(), id);//buscando a entidade no banco
+	         em.merge(pp);//alterar a entidade
+	         t.commit();
+	         return true; 
+	      }catch(Exception e){
+	        e.printStackTrace();
+	        t.rollback();
+	        return false;
+	      }finally{
+	         em.close();
+	       }
+	}
     public boolean excluir(long id){
         em = Fabrica.getFabrica().createEntityManager();
         t = em.getTransaction();

@@ -135,7 +135,7 @@ public class TelaAlterarCliente extends javax.swing.JDialog {
         c.setTelefone(txtTelefone.getText());
         c.setEndereco(txtEndereço.getText());
 
-        d.alterar(c);
+        d.alterar(c,Cliente.class,c.getId());
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -1,21 +1,28 @@
 package tela.alterar;
 
 import dao.DAOFuncionario;
+import dao.DAOProduto;
 import entidades.Funcionario;
 import java.text.ParseException;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 
 public class TelaAlterarFuncionario extends javax.swing.JDialog {
-    Funcionario funcionario = new Funcionario();
+    Funcionario fun = new Funcionario();
     DAOFuncionario d = new DAOFuncionario();
 
     public TelaAlterarFuncionario(java.awt.Frame parent, boolean modal, Funcionario f) {
        
-        super(parent, modal);        
+        super(parent, modal);
+        fun = f;
         initComponents();
-        funcionario = f;
+        txtNome.setText(f.getNome());
+        txtLogin.setText(""+f.getLogin());
+        ftxtCpf.setText(""+f.getCpf());
+        System.out.println(f.getCpf());
+        DAOProduto daop = new DAOProduto();
         setMask();
     }
     
@@ -149,29 +156,28 @@ public class TelaAlterarFuncionario extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        if(!txtLogin.getText().trim().isEmpty() &&
-                !txtNome.getText().trim().isEmpty() &&
-                !getCpf().isEmpty()){
-            
-            funcionario = new Funcionario();
-            funcionario.setNome(txtNome.getText().trim());
-            funcionario.setLogin(txtLogin.getText().trim());
-            funcionario.setCpf(getCpf());
-            d.alterar(funcionario,Funcionario.class,funcionario.getId());
-            
-            if(checkAlterarSenha.isSelected() && 
+       Funcionario ff = new Funcionario();
+        if(checkAlterarSenha.isSelected() && 
                     !getSenha(pwConfirma).trim().isEmpty()  &&
                     !getSenha(pwNovaSenha).trim().isEmpty() &&
                     (getSenha(pwConfirma).equals(getSenha(pwNovaSenha)))){
-                funcionario.setSenha(pwNovaSenha);
+                ff.setSenha(pwNovaSenha);
             }
-            else{
+        else{
+                ff.setSenha(fun.getSenha());
                 System.out.println("Senha não alterada");
             }
+        if(!txtLogin.getText().trim().isEmpty() &&
+                !txtNome.getText().trim().isEmpty() &&
+                !getCpf().isEmpty()){
+            JOptionPane.showMessageDialog(null,fun.getId());
             
-            dispose();
-                
+            ff.setNome(txtNome.getText().trim());
+            ff.setLogin(txtLogin.getText().trim());
+            ff.setCpf(getCpf());
+            d.alterar(ff,Funcionario.class,fun.getId());
         }
+        dispose();
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void checkAlterarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkAlterarSenhaActionPerformed
@@ -239,9 +245,9 @@ public class TelaAlterarFuncionario extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void setValues(){
-        txtNome.setText(funcionario.getNome());
-        txtLogin.setText(funcionario.getLogin());
-        ftxtCpf.setText(funcionario.getCpf());
+        txtNome.setText(fun.getNome());
+        txtLogin.setText(fun.getLogin());
+        ftxtCpf.setText(fun.getCpf());
     }
     
      private void setMask() {
@@ -268,7 +274,7 @@ public class TelaAlterarFuncionario extends javax.swing.JDialog {
     }
     
     public Funcionario getFuncionario(){
-        return funcionario;
+        return fun;
     }
     
     
